@@ -1,10 +1,10 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage[latin1]{inputenc}
-\usepackage{amsmath,amsfonts,amsthm,amssymb,longtable,listings,graphicx, float, epstopdf}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,longtable,listings,graphicx, float, epstopdf, textcomp}
 \usepackage[finnish]{babel}
-\renewcommand{\contentsname}{Sis‰llysluettelo}
+\renewcommand{\contentsname}{Sis√§llysluettelo}
 \renewcommand{\abstractname}{Abstrakti}
-\newtheorem{mydef}{M‰‰ritelm‰}
+\newtheorem{mydef}{M√§√§ritelm√§}
 \newtheorem{teor}{Teoreema}
 \newtheorem{example}{Esimerkki}
 \lstset{basicstyle=\small, frame=single}
@@ -18,52 +18,52 @@
 \maketitle
 
 \begin{abstract}
-T‰ss‰ tutkielmassa k‰sitell‰‰n laskettavuuden perusk‰sitteit‰, 
+T√§ss√§ tutkielmassa k√§sitell√§√§n laskettavuuden perusk√§sitteit√§, 
 tutustutaan rekisteri- ja Turingin koneisiin 
-sek‰ osoitetaan n‰iden olevan laskentakyvylt‰‰n identtisi‰.
+sek√§ osoitetaan n√§iden olevan laskentakyvylt√§√§n identtisi√§.
 \end{abstract}
 
 \tableofcontents
 
 \section{Laskettavuus}
-Er‰s algoritmitutkimuksen peruskysymys on selvitt‰‰, mihin ongelmiin on mahdollista lˆyt‰‰ ratkaisu algoritmisesti. T‰m‰n selvitt‰miseksi on toisaalta tutkittava, onko sellaista ratkaisualgoritmia ylip‰‰ns‰ olemassa, ja toisaalta onko sit‰ mahdollista suorittaa k‰yt‰nnˆss‰. Ratkaisualgoritmin olemassaoloa ja k‰yttˆkelpoisuutta on kuitenkin vaikea osoittaa ilman ett‰ m‰‰ritell‰‰n t‰sm‰llisesti, mit‰ algoritmilla tarkoitetaan.
+Er√§s algoritmitutkimuksen peruskysymys on selvitt√§√§, mihin ongelmiin on mahdollista l√∂yt√§√§ ratkaisu algoritmisesti. T√§m√§n selvitt√§miseksi on toisaalta tutkittava, onko sellaista ratkaisualgoritmia ylip√§√§ns√§ olemassa, ja toisaalta onko sit√§ mahdollista suorittaa k√§yt√§nn√∂ss√§. Ratkaisualgoritmin olemassaoloa ja k√§ytt√∂kelpoisuutta on kuitenkin vaikea osoittaa ilman ett√§ m√§√§ritell√§√§n t√§sm√§llisesti, mit√§ algoritmilla tarkoitetaan.
 
-Ep‰muodollisesti m‰‰riteltyn‰ algoritmi on ‰‰rellinen luettelo komentoja, joita noudattamalla saadaan ratkaisu annettuun ongelmaan. Yleens‰ algoritmin m‰‰ritelm‰‰n liittyy myˆs ne vaatimukset, ett‰ algoritmin suorituksen tulee p‰‰tty‰ ‰‰rellisen ajan kuluttua ja ett‰ sen tulee tuottaa samalle syˆtteelle sama tulos joka ajokerralla. T‰m‰ m‰‰ritelm‰ on kuitenkin hyvin tulkinnanvarainen esimerkiksi siksi, ett‰ siit‰ ei k‰y ilmi, mit‰ tarkoitetaan komennolla. T‰m‰n vuoksi mahdollisten komentojen joukkoa pyrit‰‰nkin rajoittamaan ‰‰relliseksi useimmiten muodollisten koneiden avulla. On t‰rke‰‰ huomata, ett‰ vaikka mahdollisten komentojen joukkoa pienennet‰‰n, monimutkaisemmat komennot voidaan toteuttaa yhdistelem‰ll‰ t‰m‰n rajatun joukon komentoja. Tavoitteena olisi lˆyt‰‰ mahdollisimman pieni komentokanta, jonka avulla voisi toteuttaa kaikki muut komennot. Lienee mahdotonta osoittaa ett‰ t‰llainen kanta olisi optimaalinen, mutta muutamia hyvi‰ ehdokkaita kuitenkin tunnetaan.
+Ep√§muodollisesti m√§√§riteltyn√§ algoritmi on √§√§rellinen luettelo komentoja, joita noudattamalla saadaan ratkaisu annettuun ongelmaan. Yleens√§ algoritmin m√§√§ritelm√§√§n liittyy my√∂s ne vaatimukset, ett√§ algoritmin suorituksen tulee p√§√§tty√§ √§√§rellisen ajan kuluttua ja ett√§ sen tulee tuottaa samalle sy√∂tteelle sama tulos joka ajokerralla. T√§m√§ m√§√§ritelm√§ on kuitenkin hyvin tulkinnanvarainen esimerkiksi siksi, ett√§ siit√§ ei k√§y ilmi, mit√§ tarkoitetaan komennolla. T√§m√§n vuoksi mahdollisten komentojen joukkoa pyrit√§√§nkin rajoittamaan √§√§relliseksi useimmiten muodollisten koneiden avulla. On t√§rke√§√§ huomata, ett√§ vaikka mahdollisten komentojen joukkoa pienennet√§√§n, monimutkaisemmat komennot voidaan toteuttaa yhdistelem√§ll√§ t√§m√§n rajatun joukon komentoja. Tavoitteena olisi l√∂yt√§√§ mahdollisimman pieni komentokanta, jonka avulla voisi toteuttaa kaikki muut komennot. Lienee mahdotonta osoittaa ett√§ t√§llainen kanta olisi optimaalinen, mutta muutamia hyvi√§ ehdokkaita kuitenkin tunnetaan.
 
-Kaikille ongelmille ei luonnollisesti lˆydy ratkaisualgoritmia. Mik‰li sellainen algoritmi kuitenkin tunnetaan, tai voidaan osoittaa ett‰ sellainen on olemassa, ongelma katsotaan laskettavissa olevaksi. Koska ep‰muodollisen algoritmin olemassaolosta on vaikea osoittaa mit‰‰n suuntaan tai toiseen, tarkastellaankin usein vain tietyn tyyppisell‰ muodollisella koneella toteutettuja algoritmeja.
+Kaikille ongelmille ei luonnollisesti l√∂ydy ratkaisualgoritmia. Mik√§li sellainen algoritmi kuitenkin tunnetaan, tai voidaan osoittaa ett√§ sellainen on olemassa, ongelma katsotaan laskettavissa olevaksi. Koska ep√§muodollisen algoritmin olemassaolosta on vaikea osoittaa mit√§√§n suuntaan tai toiseen, tarkastellaankin usein vain tietyn tyyppisell√§ muodollisella koneella toteutettuja algoritmeja.
 
-Teoreettisesti toimivan algoritmin toteuttamiskelpoisuutta tarkastellaan muun muassa tutkimalla sen suoritusaikaa syˆtteen pituuden funktiona. Algoritmia pidet‰‰n yleisesti toteutettavana, jos sen suoritusajan yl‰raja voidaan esitt‰‰ syˆtteen polynomifunktiona. T‰llaista algoritmia kutsutaan polynomiaikaiseksi. Muita kriteerej‰ on esimerkiksi algoritmin tarvitseman muistin m‰‰r‰.
+Teoreettisesti toimivan algoritmin toteuttamiskelpoisuutta tarkastellaan muun muassa tutkimalla sen suoritusaikaa sy√∂tteen pituuden funktiona. Algoritmia pidet√§√§n yleisesti toteutettavana, jos sen suoritusajan yl√§raja voidaan esitt√§√§ sy√∂tteen polynomifunktiona. T√§llaista algoritmia kutsutaan polynomiaikaiseksi. Muita kriteerej√§ on esimerkiksi algoritmin tarvitseman muistin m√§√§r√§.
 
-Muodollisilla koneilla ei ole kaikenkattavaa m‰‰ritelm‰‰, vaan jokainen m‰‰ritell‰‰n eri tavoin. Seuraavassa osiossa tutustutaan muutamiin erityyppisiin muodollisiin koneisiin ja  tutkitaan niiden v‰lisi‰ yhteyksi‰.
+Muodollisilla koneilla ei ole kaikenkattavaa m√§√§ritelm√§√§, vaan jokainen m√§√§ritell√§√§n eri tavoin. Seuraavassa osiossa tutustutaan muutamiin erityyppisiin muodollisiin koneisiin ja  tutkitaan niiden v√§lisi√§ yhteyksi√§.
 
 \section{Muodolliset kielet}
 
-Muodolliset kielet liittyv‰t l‰heisesti sellaisiin muodollisiin koneisiin, jotka k‰sittelev‰t merkkijonoja. T‰llaisia ovat esimerkiksi ‰‰relliset automaatit ja Turingin koneet. Olkoon $\Sigma$ ‰‰rellinen aakkosto. Muodollinen kieli $L$ on $\Sigma^*$:n osajoukko. $L$:n alkoita kutsutaan sanoiksi. $L$:n ajatellaan usein m‰‰r‰ytyv‰n joistakin s‰‰nnˆist‰, mutta t‰m‰ ei ole v‰ltt‰m‰tˆnt‰.
+Muodolliset kielet liittyv√§t l√§heisesti sellaisiin muodollisiin koneisiin, jotka k√§sittelev√§t merkkijonoja. T√§llaisia ovat esimerkiksi √§√§relliset automaatit ja Turingin koneet. Olkoon $\Sigma$ √§√§rellinen aakkosto. Muodollinen kieli $L$ on $\Sigma^*$:n osajoukko. $L$:n alkoita kutsutaan sanoiksi. $L$:n ajatellaan usein m√§√§r√§ytyv√§n joistakin s√§√§nn√∂ist√§, mutta t√§m√§ ei ole v√§ltt√§m√§t√∂nt√§.
 
-Olkoon $M$ muodollinen kone ja olkoon $w \in L$. $M(w)$ merkitsee koneen $M$ antamaa tulosta syˆtteell‰ $w$. Kone $M$ tunnistaa kielen $L(M) = \{w \in \Sigma^* | M(w) = '\text{kyll‰}'\}$.
+Olkoon $M$ muodollinen kone ja olkoon $w \in L$. $M(w)$ merkitsee koneen $M$ antamaa tulosta sy√∂tteell√§ $w$. Kone $M$ tunnistaa kielen $L(M) = \{w \in \Sigma^* | M(w) = '\text{kyll√§}'\}$.
 
 
 \section{Automaatit}
-Automaatit ovat yksinkertaisia muodollisia koneita. Ne joko hyv‰ksyv‰t tai hylk‰‰v‰t annetun ‰‰rillisen merkkijonon. Muodollisesti m‰‰riteltyn‰ automaatti $M$ on viisikko $(Q, \Sigma, \delta, q_0, F)$, jonka osat ovat
+Automaatit ovat yksinkertaisia muodollisia koneita. Ne joko hyv√§ksyv√§t tai hylk√§√§v√§t annetun √§√§rillisen merkkijonon. Muodollisesti m√§√§riteltyn√§ automaatti $M$ on viisikko $(Q, \Sigma, \delta, q_0, F)$, jonka osat ovat
 \begin{itemize}
-\item ƒ‰rellinen tilajoukko $(Q)$
+\item √Ñ√§rellinen tilajoukko $(Q)$
 
-\item ƒ‰rellinen aakkosto $(\Sigma)$
+\item √Ñ√§rellinen aakkosto $(\Sigma)$
 
-\item Siirtym‰funktio $(\delta : Q \times \Sigma \rightarrow Q)$
+\item Siirtym√§funktio $(\delta : Q \times \Sigma \rightarrow Q)$
 
 \item Alkutila $(q_0 \in Q)$
 
-\item Hyv‰ksyvien tilojen joukko $(F \subset Q)$
+\item Hyv√§ksyvien tilojen joukko $(F \subset Q)$
 
 \end{itemize}
 
-Automaatti on aina jossakin tilassa $q \in Q$, alkutilanteessa $q = q_0$. Se lukee syˆtteest‰ yhden symbolin kerrallaan, olkoon t‰m‰ symboli $\sigma \in \Sigma$. Koneen nykyisen tilan ja luetun merkin perusteella se siirtyy tilaan $\delta (q, \sigma)$, ja siirtyy lukemaan seuraavaa symbolia. Kun koko syˆte on k‰yty l‰pi tarkistetaan onko automaatin sen hetkinen tila joukossa $F$. Jos n‰in on, palautetaan vastaukseksi 'kyll‰', muutoin 'ei'.
+Automaatti on aina jossakin tilassa $q \in Q$, alkutilanteessa $q = q_0$. Se lukee sy√∂tteest√§ yhden symbolin kerrallaan, olkoon t√§m√§ symboli $\sigma \in \Sigma$. Koneen nykyisen tilan ja luetun merkin perusteella se siirtyy tilaan $\delta (q, \sigma)$, ja siirtyy lukemaan seuraavaa symbolia. Kun koko sy√∂te on k√§yty l√§pi tarkistetaan onko automaatin sen hetkinen tila joukossa $F$. Jos n√§in on, palautetaan vastaukseksi 'kyll√§', muutoin 'ei'.
 
-T‰ll‰ tavoin m‰‰ritelty muodollinen kone on monilta ominaisuuksiltaan k‰yttˆkelpoinen; se suoritus kest‰‰ aina lineaarisen ajan, ja sen suorittamiseen tarvittavan muistin m‰‰r‰ on vakio.
+T√§ll√§ tavoin m√§√§ritelty muodollinen kone on monilta ominaisuuksiltaan k√§ytt√∂kelpoinen; se suoritus kest√§√§ aina lineaarisen ajan, ja sen suorittamiseen tarvittavan muistin m√§√§r√§ on vakio.
 
 \begin{example}
-$M = (\{q_0, q_1, q_2\}, \{a, b\}, \delta, q_0, \{q_0, q_1\})$ jossa siirtym‰funktio $\delta$ kuvataan seuraavalla graafilla:
+$M = (\{q_0, q_1, q_2\}, \{a, b\}, \delta, q_0, \{q_0, q_1\})$ jossa siirtym√§funktio $\delta$ kuvataan seuraavalla graafilla:
 
 \begin{figure}[H]
 \centering
@@ -71,7 +71,7 @@ $M = (\{q_0, q_1, q_2\}, \{a, b\}, \delta, q_0, \{q_0, q_1\})$ jossa siirtym‰fun
 \caption{Automaatin tilakaavio}
 \end{figure}
 
-Siirtym‰funktio voidaan myˆs kuvata taulukkona:
+Siirtym√§funktio voidaan my√∂s kuvata taulukkona:
 \\
 \begin{center}
 \begin{tabular} {c | c c c}
@@ -82,13 +82,13 @@ $b$ & $q_1$ & $q_1$ & $q_2$ \\
 \end{tabular}
 \end{center}
 
-T‰m‰ kone hyv‰ksyy vain merkkijonot, jotka ovat muotoa $a^nb^m$, $n, m \in \mathbb{N}$.
+T√§m√§ kone hyv√§ksyy vain merkkijonot, jotka ovat muotoa $a^nb^m$, $n, m \in \mathbb{N}$.
 
-Jos syˆtteeksi annetaan esimerkiksi merkkijono aaabb, suoritus etenisi seuraavasti:\\
+Jos sy√∂tteeksi annetaan esimerkiksi merkkijono aaabb, suoritus etenisi seuraavasti:\\
 
 \begin{center}
 \begin{tabular}{r c l }
-Tila & Merkki & J‰ljell‰ oleva syˆte \\
+Tila & Merkki & J√§ljell√§ oleva sy√∂te \\
 $q_0$ & a & aabb \\
 $q_0$ & a & abb \\
 $q_0$ & a & bb \\
@@ -98,13 +98,13 @@ $q_1$ & & \\
 \end{tabular}
 \end{center}
 
-Koska $q_1 \in F$, kone antaa tulokseksi 'kyll‰'.
+Koska $q_1 \in F$, kone antaa tulokseksi 'kyll√§'.
 
-Toisaalta jos syˆtteen‰ olisi aba, suoritus etenisikin seuraavasti:
+Toisaalta jos sy√∂tteen√§ olisi aba, suoritus etenisikin seuraavasti:
 \\
 \begin{center}
 \begin{tabular}{r c l }
-Tila & Merkki & J‰ljell‰ oleva syˆte \\
+Tila & Merkki & J√§ljell√§ oleva sy√∂te \\
 $q_0$ & a & ba \\
 $q_0$ & b & a \\
 $q_1$ & a &  \\
@@ -115,38 +115,38 @@ $q_2$ & & \\
 Koska $q_2 \notin F$, kone antaisi tulokseksi 'ei'.
 
 \begin{proof}
-Olkoon sana $w \in \Sigma^*$. Olkoon $L \subset \Sigma^*$ siten ett‰ $L$ sis‰lt‰‰ t‰sm‰l-\\leen muotoa $a^*b^*$ olevat sanat. Jos $w \in L$, niin automaatti selv‰sti palauttaa tuloksen 'kyll‰'. Jos $w \notin L$, niin sen t‰ytyy sis‰lt‰‰ ainakin yksi $ba$-pari. T‰m‰ riitt‰‰ siirt‰m‰‰n automaatin mist‰ hyv‰ns‰ tilasta tilaan $q_2$. Mik‰‰n merkki ei siirr‰ automaattia tilasta $q_2$ mihink‰‰n muuhun tilaan, joten suorituksen p‰‰tytty‰ kone on edelleen tilassa $q_2$, ja palauttaa siis tulokseksi 'ei'.
+Olkoon sana $w \in \Sigma^*$. Olkoon $L \subset \Sigma^*$ siten ett√§ $L$ sis√§lt√§√§ t√§sm√§l-\\leen muotoa $a^*b^*$ olevat sanat. Jos $w \in L$, niin automaatti selv√§sti palauttaa tuloksen 'kyll√§'. Jos $w \notin L$, niin sen t√§ytyy sis√§lt√§√§ ainakin yksi $ba$-pari. T√§m√§ riitt√§√§ siirt√§m√§√§n automaatin mist√§ hyv√§ns√§ tilasta tilaan $q_2$. Mik√§√§n merkki ei siirr√§ automaattia tilasta $q_2$ mihink√§√§n muuhun tilaan, joten suorituksen p√§√§tytty√§ kone on edelleen tilassa $q_2$, ja palauttaa siis tulokseksi 'ei'.
 \qedhere
 \end{proof}
 \end{example}
 
-ƒ‰rellisill‰ automaateilla on kuitenkin monia rajoitteita. On runsaasti esimerkkej‰ ongelmista, jotka intuitiivisesti olisivat ratkaistavissa, mutta joita ei voi laskea ‰‰rellisen automaatin avulla. T‰llaisia ongelmia ovat esimerkiksi 'Onko annettu suljelauseke oikein muodostettu?' tai 'Onko merkkijono muotoa $a^nb^n$?'. Onkin selv‰‰, ett‰ ‰‰relliset automaatit eiv‰t ole riitt‰v‰n yleisi‰ toteuttaakseen kaikki algoritmit.
+√Ñ√§rellisill√§ automaateilla on kuitenkin monia rajoitteita. On runsaasti esimerkkej√§ ongelmista, jotka intuitiivisesti olisivat ratkaistavissa, mutta joita ei voi laskea √§√§rellisen automaatin avulla. T√§llaisia ongelmia ovat esimerkiksi 'Onko annettu suljelauseke oikein muodostettu?' tai 'Onko merkkijono muotoa $a^nb^n$?'. Onkin selv√§√§, ett√§ √§√§relliset automaatit eiv√§t ole riitt√§v√§n yleisi√§ toteuttaakseen kaikki algoritmit.
 
 \begin{teor}
-Ei ole olemassa ‰‰rellist‰ automaattia $M$, joka tunnistaa kielen $L = \{a^nb^n | n \geq 0\}$.
+Ei ole olemassa √§√§rellist√§ automaattia $M$, joka tunnistaa kielen $L = \{a^nb^n | n \geq 0\}$.
 \end{teor}
 \begin{proof}
-Olkoon $M$ ‰‰rellinen automaatti, jolla on $n$ tilaa. Mik‰ tahansa merkkijono, jonka pituus on v‰hint‰‰n kuin $n$ aiheuttaa sen, ett‰ jokin koneen tiloista toistetaan. Merkit‰‰n t‰t‰ tilaa $S$. Siirtym‰ t‰m‰n tilan ensimm‰isest‰ ilmentym‰st‰ toiseen vastaa jotakin k‰sitellyn merkkijonon osaa. Olkoon t‰m‰ osa $y$. Jos kone on tilassa $S$ ja se saa syˆtteekseen $w$:n, p‰‰tyy se taas tilaan $S$. T‰st‰ seuraa, ett‰ jos automaatti hyv‰ksyy sanan $w = xyz$, t‰ytyy sen hyv‰ksy‰ sana $xy^iz, i \geq 0$.
+Olkoon $M$ √§√§rellinen automaatti, jolla on $n$ tilaa. Mik√§ tahansa merkkijono, jonka pituus on v√§hint√§√§n kuin $n$ aiheuttaa sen, ett√§ jokin koneen tiloista toistetaan. Merkit√§√§n t√§t√§ tilaa $S$. Siirtym√§ t√§m√§n tilan ensimm√§isest√§ ilmentym√§st√§ toiseen vastaa jotakin k√§sitellyn merkkijonon osaa. Olkoon t√§m√§ osa $y$. Jos kone on tilassa $S$ ja se saa sy√∂tteekseen $w$:n, p√§√§tyy se taas tilaan $S$. T√§st√§ seuraa, ett√§ jos automaatti hyv√§ksyy sanan $w = xyz$, t√§ytyy sen hyv√§ksy√§ sana $xy^iz, i \geq 0$.
 
-Sovelletaan t‰t‰ nyt kielen $L$ tapaukseen. Olkoon $w = a^mb^m, m > n$. T‰llˆin on olemassa sellainen jako $i + j + k = m, j > 0$, ett‰ kone $M$ tunnistaa sanat $a^ia^{j*p}a^kb^m, p \in \mathbb{N}$. N‰ist‰ kuitenkin vain yksi kuuluu kieleen $L$, joten $L(M) \neq L$.
+Sovelletaan t√§t√§ nyt kielen $L$ tapaukseen. Olkoon $w = a^mb^m, m > n$. T√§ll√∂in on olemassa sellainen jako $i + j + k = m, j > 0$, ett√§ kone $M$ tunnistaa sanat $a^ia^{j*p}a^kb^m, p \in \mathbb{N}$. N√§ist√§ kuitenkin vain yksi kuuluu kieleen $L$, joten $L(M) \neq L$.
 \qedhere
 \end{proof}
 
 
 \section{Rekisterikoneet}
-Shepherdsonin ja Sturgisin rekisterikoneet ovat rakenteellisesti hyvin yksinkertaisia. Koneella on $R$ rekisteri‰, joista kukin muistaa yhden luonnollisen luvun. Rekisterin $n$ arvoon viitataan merkinn‰ll‰ \={n}. Suoritettava algoritmi esitet‰‰n numeroituna luettelona, joka koostuu hyvin yksinkertaisista komennoista. Merkit‰‰n n‰it‰ komentoja $\hat{1}$, $\hat{2}$, ... , $\hat{M}$. Algoritmin alkuarvot ovat tallennettu rekistereihin. Rekisterikone tunnistaa kolme erilaista komentoa: $(n,j)$, $(n,j,k)$ sek‰ lopetuskomennon $\hat{M}$. Kahden ensimm‰isen komennon merkitykset ovat:
+Shepherdsonin ja Sturgisin rekisterikoneet ovat rakenteellisesti hyvin yksinkertaisia. Koneella on $R$ rekisteri√§, joista kukin muistaa yhden luonnollisen luvun. Rekisterin $n$ arvoon viitataan merkinn√§ll√§ \={n}. Suoritettava algoritmi esitet√§√§n numeroituna luettelona, joka koostuu hyvin yksinkertaisista komennoista. Merkit√§√§n n√§it√§ komentoja $\hat{1}$, $\hat{2}$, ... , $\hat{M}$. Algoritmin alkuarvot ovat tallennettu rekistereihin. Rekisterikone tunnistaa kolme erilaista komentoa: $(n,j)$, $(n,j,k)$ sek√§ lopetuskomennon $\hat{M}$. Kahden ensimm√§isen komennon merkitykset ovat:
 
 \begin{tabular}{c l}
-$(n, j)$ & Lis‰‰ 1 rekisteriin n ja siirry komentoon j. \\
-$(n, j, k)$ & Jos $\bar{n} > 0$, v‰henn‰ 1 rekisterist‰ n ja siirry komentoon j; \\
+$(n, j)$ & Lis√§√§ 1 rekisteriin n ja siirry komentoon j. \\
+$(n, j, k)$ & Jos $\bar{n} > 0$, v√§henn√§ 1 rekisterist√§ n ja siirry komentoon j; \\
 & muutoin siirry komentoon k.\\
 \end{tabular}
 
 
-N‰ill‰ sin‰ns‰ yksinkertaisilla s‰‰nnˆill‰ on mahdollista suorittaa monimutkaisiakin laskutoimituksia.
+N√§ill√§ sin√§ns√§ yksinkertaisilla s√§√§nn√∂ill√§ on mahdollista suorittaa monimutkaisiakin laskutoimituksia.
 
 \begin{example}
-M‰‰ritell‰‰n rekisterikone joka suorittaa yhteenlaskun.
+M√§√§ritell√§√§n rekisterikone joka suorittaa yhteenlaskun.
 \\
 \begin{math} \\
 R = 2, M = 3 \\
@@ -167,32 +167,32 @@ Olkoon rekisterien arvot alkutilanteessa (3, 2). Ohjelman suoritus etenisi seura
 
 \end{example}
 
-% Esimerkkej‰ muista ohjelmista.
+% Esimerkkej√§ muista ohjelmista.
 
 
 \section{Turingin koneet}
-Turingin koneet ovat ensimm‰inen tunnettu muodollinen kone. Alan Turing esitteli sen vuonna 1937, kun k‰ytti sit‰ apuv‰lineen‰ ratkaistakseen David Hilbertin vuonna 1928 esitt‰m‰n p‰‰tˆsongelman.
-Turingin koneet poikkeavat rakenteellisesti rekisterikoneista huomattavasti ja muistuttavat enemm‰nkin ‰‰rellisi‰ tilakoneita. Muodollisesti m‰‰riteltyn‰ Turingin koneella on seitsem‰n komponenttia $(Q, \Sigma, \Gamma, \delta, q_0, B, F)$, jossa
+Turingin koneet ovat ensimm√§inen tunnettu muodollinen kone. Alan Turing esitteli sen vuonna 1937, kun k√§ytti sit√§ apuv√§lineen√§ ratkaistakseen David Hilbertin vuonna 1928 esitt√§m√§n p√§√§t√∂songelman.
+Turingin koneet poikkeavat rakenteellisesti rekisterikoneista huomattavasti ja muistuttavat enemm√§nkin √§√§rellisi√§ tilakoneita. Muodollisesti m√§√§riteltyn√§ Turingin koneella on seitsem√§n komponenttia $(Q, \Sigma, \Gamma, \delta, q_0, B, F)$, jossa
 
 \begin{itemize}
-\item ƒ‰rellinen tilajoukko $(Q)$
+\item √Ñ√§rellinen tilajoukko $(Q)$
 \item Nauha-aakkosto $(\Gamma)$
-\item Syˆteaakkosto $(\Sigma \subset \Gamma)$
-\item Siirtym‰funktio $(\delta : Q \times \Gamma \rightarrow Q \times \Gamma \times {L,R} \cup {\emptyset})$
+\item Sy√∂teaakkosto $(\Sigma \subset \Gamma)$
+\item Siirtym√§funktio $(\delta : Q \times \Gamma \rightarrow Q \times \Gamma \times {L,R} \cup {\emptyset})$
 \item Alkutila $(q_0)$
-\item 'Tyhj‰' nauhasymboli $(B \in \Gamma - \Sigma)$
-\item Hyv‰ksyvien tilojen joukko $(F \subseteq Q)$
+\item 'Tyhj√§' nauhasymboli $(B \in \Gamma - \Sigma)$
+\item Hyv√§ksyvien tilojen joukko $(F \subseteq Q)$
 \end{itemize}
 
-Turingin koneiden ajatellaan k‰sittelev‰n kaksisuuntaisesti ‰‰retˆnt‰ nauhaa, jonka jollekin ‰‰relliselle alueelle on kirjoitettu symboleja. Muu nauha sis‰lt‰‰ vain symbolia $B$ ('blank' eli tyhj‰).
-Turingin koneet toimivat kuten ‰‰relliset automaatit lukuun ottamatta kahta merkitt‰v‰‰ eroa. Ne voivat siirty‰ nauhaa sek‰ eteen- ett‰ taaksep‰in, ja ne voivat muuttaa nauhan sis‰ltˆ‰.
+Turingin koneiden ajatellaan k√§sittelev√§n kaksisuuntaisesti √§√§ret√∂nt√§ nauhaa, jonka jollekin √§√§relliselle alueelle on kirjoitettu symboleja. Muu nauha sis√§lt√§√§ vain symbolia $B$ ('blank' eli tyhj√§).
+Turingin koneet toimivat kuten √§√§relliset automaatit lukuun ottamatta kahta merkitt√§v√§√§ eroa. Ne voivat siirty√§ nauhaa sek√§ eteen- ett√§ taaksep√§in, ja ne voivat muuttaa nauhan sis√§lt√∂√§.
 
-Alkutilanteessa Kone aloittaa syˆtteen vasemmasta reunasta, tilassa $q_0 \in Q$. Kone lukee yhden merkin ja p‰‰tt‰‰ sen perusteella mihin tilaan siirty‰, mink‰ merkin kirjoittaa nauhalle luetun merkin tilalle ja siirty‰kˆ oikealle vai vasemmalle. Suoritus p‰‰ttyy vasta, kun siirtym‰funktio $\delta$ palauttaa arvon $\emptyset$. Sen j‰lkeen verrataan senhetkist‰ tilaa joukkoon F kuten ‰‰rellisten automaattien tapauksessa.
+Alkutilanteessa Kone aloittaa sy√∂tteen vasemmasta reunasta, tilassa $q_0 \in Q$. Kone lukee yhden merkin ja p√§√§tt√§√§ sen perusteella mihin tilaan siirty√§, mink√§ merkin kirjoittaa nauhalle luetun merkin tilalle ja siirty√§k√∂ oikealle vai vasemmalle. Suoritus p√§√§ttyy vasta, kun siirtym√§funktio $\delta$ palauttaa arvon $\emptyset$. Sen j√§lkeen verrataan senhetkist√§ tilaa joukkoon F kuten √§√§rellisten automaattien tapauksessa.
 
 
-%Esimerkki Turingin koneen toiminnasta, ehk‰ m‰‰ritell‰‰n kone joka tekee jotain, annetaan parin askeleen esimerkki
+%Esimerkki Turingin koneen toiminnasta, ehk√§ m√§√§ritell√§√§n kone joka tekee jotain, annetaan parin askeleen esimerkki
 \begin{example}
-Olkoon $M$ Turingin kone siten, ett‰\\$M = (\{q_0, q_a, q_b, q_r, q_e\}, \{a, b\}, \{a, b, B\}, \delta, q_0, B, \{s\})$ miss‰ $\delta$ toimii seuraavan taulukon mukaisesti:
+Olkoon $M$ Turingin kone siten, ett√§\\$M = (\{q_0, q_a, q_b, q_r, q_e\}, \{a, b\}, \{a, b, B\}, \delta, q_0, B, \{s\})$ miss√§ $\delta$ toimii seuraavan taulukon mukaisesti:
 
 \begin{tabular}{r | l l l}
 & a & b & B \\
@@ -204,37 +204,37 @@ $q_r$ & $(q_r, a, L)$ & $(q_r, b, L)$ & $(q_0, B, R)$\\
 $q_e$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ 
 \end{tabular}
 
-T‰ll‰ tavoin m‰‰ritelty Turingin kone tunnistaa kielen $\{a^nb^n | n \geq 0\}$, jota ‰‰relliset automaatit eiv‰t pysty tunnistamaan.
+T√§ll√§ tavoin m√§√§ritelty Turingin kone tunnistaa kielen $\{a^nb^n | n \geq 0\}$, jota √§√§relliset automaatit eiv√§t pysty tunnistamaan.
 
 \end{example}
 
-\section{Funktioiden esitt‰minen muodollisella koneella}
+\section{Funktioiden esitt√§minen muodollisella koneella}
 
-Useimmissa tapauksissa ei riit‰, ett‰ algoritmi tuottaa kyll‰/ei -vastauksen, vaan algoritmin toivotaan tuottavan esimerkiksi laskutoimituksen tuloksen. N‰iss‰ tapauksissa ei ole t‰rke‰‰ se, miss‰ tilassa kone on lopettaessaan suorituksen, vaan se, mit‰ rekistereiss‰ tai nauhalla on. Lopetustilan tarkestelu ei t‰llaisissa tapauksissa ole tarpeellista, vaan voimme pit‰‰ kaikkia lopetustiloja hyv‰ksytt‰vin‰.
+Useimmissa tapauksissa ei riit√§, ett√§ algoritmi tuottaa kyll√§/ei -vastauksen, vaan algoritmin toivotaan tuottavan esimerkiksi laskutoimituksen tuloksen. N√§iss√§ tapauksissa ei ole t√§rke√§√§ se, miss√§ tilassa kone on lopettaessaan suorituksen, vaan se, mit√§ rekistereiss√§ tai nauhalla on. Lopetustilan tarkestelu ei t√§llaisissa tapauksissa ole tarpeellista, vaan voimme pit√§√§ kaikkia lopetustiloja hyv√§ksytt√§vin√§.
 
-Se, miten algoritmi palauttaa vastauksen, on sopimuskysymys. Turingin koneen tapauksessa vastaus luetaan nauhalta suorituksen p‰‰tytty‰, ja rekisterikoneen tapauksessa tulos tallennetaan yleens‰ rekisteriin yksi.
+Se, miten algoritmi palauttaa vastauksen, on sopimuskysymys. Turingin koneen tapauksessa vastaus luetaan nauhalta suorituksen p√§√§tytty√§, ja rekisterikoneen tapauksessa tulos tallennetaan yleens√§ rekisteriin yksi.
 
-\section{Rekisterikoneiden ja Turingin koneiden\\ v‰linen yhteys}
+\section{Rekisterikoneiden ja Turingin koneiden\\ v√§linen yhteys}
 
-Vaikka Turingin koneet ja rekisterikoneet ovat rakenteellisesti hyvin erilaisia, ovat ne kuitenkin osoittautuneet laskukyvylt‰‰n ekvivalenteiksi. Jos ongelma on ratkaistavissa rekisterikoneella, se on myˆs ratkaistavissa Turingin koneella ja p‰invastoin. Se, ett‰ n‰inkin erilaiset koneet ovat yht‰ ilmaisuvoimaisia, viittaa siihen, ett‰ olemme l‰hestym‰ss‰ k‰yttˆkelpoista tapaa m‰‰ritell‰ laskettavuuden k‰site. Laskettavuus samaistetaankin usein laskettavuuteen Turingin koneilla.
+Vaikka Turingin koneet ja rekisterikoneet ovat rakenteellisesti hyvin erilaisia, ovat ne kuitenkin osoittautuneet laskukyvylt√§√§n ekvivalenteiksi. Jos ongelma on ratkaistavissa rekisterikoneella, se on my√∂s ratkaistavissa Turingin koneella ja p√§invastoin. Se, ett√§ n√§inkin erilaiset koneet ovat yht√§ ilmaisuvoimaisia, viittaa siihen, ett√§ olemme l√§hestym√§ss√§ k√§ytt√∂kelpoista tapaa m√§√§ritell√§ laskettavuuden k√§site. Laskettavuus samaistetaankin usein laskettavuuteen Turingin koneilla.
 
 \begin{teor}
 Olkoon $f$ k:n muuttujan funktio. $f$ on laskettavissa rekisterikoneella jos ja vain jos se on laskettavissa Turingin koneella.
 \begin{proof}
-Osoitetaan ensin, ett‰ annetun Turingin koneen M toimintaa voidaan simuloida sopivasti rakennetulla rekisterikoneella. Jos t‰m‰ pit‰‰ paikkansa, mik‰ tahansa Turingin koneella ratkaistavissa oleva ongelma voidaan ratkaista myˆs rekisterikoneella tarvittaessa simuloimalla ko. Turingin koneen toimintaa. T‰m‰n j‰lkeen osoitetaan, ett‰ sama p‰tee myˆs toiseen suuntaan.
+Osoitetaan ensin, ett√§ annetun Turingin koneen M toimintaa voidaan simuloida sopivasti rakennetulla rekisterikoneella. Jos t√§m√§ pit√§√§ paikkansa, mik√§ tahansa Turingin koneella ratkaistavissa oleva ongelma voidaan ratkaista my√∂s rekisterikoneella tarvittaessa simuloimalla ko. Turingin koneen toimintaa. T√§m√§n j√§lkeen osoitetaan, ett√§ sama p√§tee my√∂s toiseen suuntaan.
 
-Olkoon M Turingin kone. M:n t‰m‰n hetkinen konfiguraatio koostuu nauhan sis‰llˆst‰, t‰ll‰ hetkell‰ tutkittavasta symbolista sek‰ koneen tilasta. Vaikka nauha on ‰‰retˆn, voimme mallintaa sit‰ ‰‰rellisen‰, sill‰ vain ‰‰rellisen moni merkki on ep‰tyhj‰. Nauha-aakkosto on ‰‰rellinen, joten nauhan sen hetkinen tila voidaan ilmaista yhten‰ lukuna alkulukukoodauksella. Tallennetaan t‰m‰ ensimm‰iseen rekisteriin, jota ei k‰ytet‰ syˆtteen vastaanottamiseen. Seuraavaan rekisteriin tallennetaan tutkittavan merkin sijaintia vastaava luonnollinen luku, ja sit‰ seuraavaan koneen t‰m‰n hetkist‰ tilaa vastaava luku.
+Olkoon M Turingin kone. M:n t√§m√§n hetkinen konfiguraatio koostuu nauhan sis√§ll√∂st√§, t√§ll√§ hetkell√§ tutkittavasta symbolista sek√§ koneen tilasta. Vaikka nauha on √§√§ret√∂n, voimme mallintaa sit√§ √§√§rellisen√§, sill√§ vain √§√§rellisen moni merkki on ep√§tyhj√§. Nauha-aakkosto on √§√§rellinen, joten nauhan sen hetkinen tila voidaan ilmaista yhten√§ lukuna alkulukukoodauksella. Tallennetaan t√§m√§ ensimm√§iseen rekisteriin, jota ei k√§ytet√§ sy√∂tteen vastaanottamiseen. Seuraavaan rekisteriin tallennetaan tutkittavan merkin sijaintia vastaava luonnollinen luku, ja sit√§ seuraavaan koneen t√§m√§n hetkist√§ tilaa vastaava luku.
 \begin{figure}[H]
 \centering
 \includegraphics{graph5.eps}
 \caption{Rekistereiden valinta}
 \end{figure}
-T‰m‰n j‰lkeen voidaan kuvailla rekisterikoneen varsinainen toiminta. Jokaista paria $(q_i, a), q_i \in Q, a \in \Gamma$ kohden on komentosarja, joka muokkaa rekistereit‰ niin, ett‰ se vastaa sit‰ mit‰ koneessa M olisi tapahtunut. Jos $\delta(q_i, a) = \emptyset$ koneen tulisi pys‰hty‰, mutta t‰ss‰ tapauksessa tulee ensin purkaa ja kopioida nauharekisterin sis‰ltˆ tulosrekisteriin. Jos $\delta(q_i, a) = (q_j, b, L)$ tai $(q_j, b, R)$ tulee kirjoittaa komentosarja joka muokkaa kolmea tilarekisteri‰ koneen M tavoin. T‰llaisten komentosarjojen tuottaminen t‰sm‰llisesti on varsin tyˆl‰st‰, mutta ei kovin vaikeaa.
-% Esimerkki t‰st‰?
+T√§m√§n j√§lkeen voidaan kuvailla rekisterikoneen varsinainen toiminta. Jokaista paria $(q_i, a), q_i \in Q, a \in \Gamma$ kohden on komentosarja, joka muokkaa rekistereit√§ niin, ett√§ se vastaa sit√§ mit√§ koneessa M olisi tapahtunut. Jos $\delta(q_i, a) = \emptyset$ koneen tulisi pys√§hty√§, mutta t√§ss√§ tapauksessa tulee ensin purkaa ja kopioida nauharekisterin sis√§lt√∂ tulosrekisteriin. Jos $\delta(q_i, a) = (q_j, b, L)$ tai $(q_j, b, R)$ tulee kirjoittaa komentosarja joka muokkaa kolmea tilarekisteri√§ koneen M tavoin. T√§llaisten komentosarjojen tuottaminen t√§sm√§llisesti on varsin ty√∂l√§st√§, mutta ei kovin vaikeaa.
+% Esimerkki t√§st√§?
 
-N‰iden lis‰ksi joudumme myˆs m‰‰rittelem‰‰n t‰llaisen koneen aloitustilan. T‰m‰ tapahtuu asettamalla syˆtenauhaa vastaava luku nauharekisteriin, 1 k‰sitelt‰v‰n merkin numeroksi sek‰ 0 koneen tilaksi.
+N√§iden lis√§ksi joudumme my√∂s m√§√§rittelem√§√§n t√§llaisen koneen aloitustilan. T√§m√§ tapahtuu asettamalla sy√∂tenauhaa vastaava luku nauharekisteriin, 1 k√§sitelt√§v√§n merkin numeroksi sek√§ 0 koneen tilaksi.
 
-K‰‰nteisesti tulee rakentaa sellainen Turingin kone, joka pystyy simuloimaan annetun rekisterikoneen toimintaa. Olkoon rekisterikoneella R rekisteri‰. T‰llˆin tallennetaan yhden rekisterin sis‰llˆn koodattuna joka R:nteen muistipaikkaan valitusta rajasta eteenp‰in. Esimerkiksi jos $R = 2$, joka toinen nauhan muistipaikka kuuluisi rekisteriin 1 ja joka toinen rekisteriin 2. Yksinkertaisuuden vuoksi t‰ss‰ k‰ytet‰‰n additiivista koodausta, vaikka sen voisi tallettaa tehokkaamminkin, esimerkiksi multiplikatiivisesti. 
+K√§√§nteisesti tulee rakentaa sellainen Turingin kone, joka pystyy simuloimaan annetun rekisterikoneen toimintaa. Olkoon rekisterikoneella R rekisteri√§. T√§ll√∂in tallennetaan yhden rekisterin sis√§ll√∂n koodattuna joka R:nteen muistipaikkaan valitusta rajasta eteenp√§in. Esimerkiksi jos $R = 2$, joka toinen nauhan muistipaikka kuuluisi rekisteriin 1 ja joka toinen rekisteriin 2. Yksinkertaisuuden vuoksi t√§ss√§ k√§ytet√§√§n additiivista koodausta, vaikka sen voisi tallettaa tehokkaamminkin, esimerkiksi multiplikatiivisesti. 
 
 \begin{figure}[H]
 \begin{center}
@@ -243,22 +243,22 @@ K‰‰nteisesti tulee rakentaa sellainen Turingin kone, joka pystyy simuloimaan ann
 \end{center}
 \end{figure}
 
-Ensimm‰iseksi annettu syˆte tulee muuntaa edell‰ kuvattuun muotoon. Tarvittavan aliohjelman teko on helppoa.
+Ensimm√§iseksi annettu sy√∂te tulee muuntaa edell√§ kuvattuun muotoon. Tarvittavan aliohjelman teko on helppoa.
 
-Sen j‰lkeen kirjoitetaan aliohjelmat, jotka suorittavat samat toiminnot kuin $(n, j)$ ja $(n, j, k)$. Kannattanee pit‰‰ tarkoitukseen varattua merkki‰ rekisterialueen vasemmalla puolen, jotta se lˆytyy helpommin. T‰ss‰ tarkoitukseen k‰ytet‰‰n merkki‰ 1. Olkoon Turingin koneen lukup‰‰ t‰ll‰ merkill‰ seuraavia aliohjelmia varten, ja olkoon se komentoa $(n, j)$ vastaavassa tilassa. Aluksi kone siirtyy $n-1$ merkki‰ oikealle, jolloin se saavutta rekisteri‰ n vastaavan alueen. T‰m‰n j‰lkeen se siirtyy oikealle R:n pituisin askelin, kunnes se lˆyt‰‰ tyhj‰n merkin. Kone asettaa sen 0:ksi, palaa takaisin vasemmalle merkin 1 luokse ja muuttaa tilansa rekisterikoneen komentoa \^j vastaavaksi. T‰ll‰ tavoin rekisterin n arvoa on kasvatettu yhdell‰. Olkoon kone nyt komentoa $(n, j, k)$ vastaavassa tilassa. Kone siirtyy ensin $n - 1$ merkki‰ oikealle. Jos sill‰ kohdalla oleva merkki on tyhj‰, palataan kohtaan 1 ja siirryt‰‰n rekisterikoneen komentoa \^k vastaavaan tilaan. Jos merkki ei ollut tyhj‰, siirrymme oikealle R:n pituisin askelin kunnes lˆyd‰mme tyhj‰n merkin. Siirrymme R merkki‰ vasemmalle, merkitsemme sen tyhj‰ksi, siirrymme takaisin merkin 1 luo ja siirrymme komentoa \^j vastaavaan tilaan.
+Sen j√§lkeen kirjoitetaan aliohjelmat, jotka suorittavat samat toiminnot kuin $(n, j)$ ja $(n, j, k)$. Kannattanee pit√§√§ tarkoitukseen varattua merkki√§ rekisterialueen vasemmalla puolen, jotta se l√∂ytyy helpommin. T√§ss√§ tarkoitukseen k√§ytet√§√§n merkki√§ 1. Olkoon Turingin koneen lukup√§√§ t√§ll√§ merkill√§ seuraavia aliohjelmia varten, ja olkoon se komentoa $(n, j)$ vastaavassa tilassa. Aluksi kone siirtyy $n-1$ merkki√§ oikealle, jolloin se saavutta rekisteri√§ n vastaavan alueen. T√§m√§n j√§lkeen se siirtyy oikealle R:n pituisin askelin, kunnes se l√∂yt√§√§ tyhj√§n merkin. Kone asettaa sen 0:ksi, palaa takaisin vasemmalle merkin 1 luokse ja muuttaa tilansa rekisterikoneen komentoa \^j vastaavaksi. T√§ll√§ tavoin rekisterin n arvoa on kasvatettu yhdell√§. Olkoon kone nyt komentoa $(n, j, k)$ vastaavassa tilassa. Kone siirtyy ensin $n - 1$ merkki√§ oikealle. Jos sill√§ kohdalla oleva merkki on tyhj√§, palataan kohtaan 1 ja siirryt√§√§n rekisterikoneen komentoa \^k vastaavaan tilaan. Jos merkki ei ollut tyhj√§, siirrymme oikealle R:n pituisin askelin kunnes l√∂yd√§mme tyhj√§n merkin. Siirrymme R merkki√§ vasemmalle, merkitsemme sen tyhj√§ksi, siirrymme takaisin merkin 1 luo ja siirrymme komentoa \^j vastaavaan tilaan.
 
-Kun komento 'Seis' saavutetaan, ensimm‰isen rekisterin sis‰ltˆ talletetaan ja muu nauha tyhjennet‰‰n.
+Kun komento 'Seis' saavutetaan, ensimm√§isen rekisterin sis√§lt√∂ talletetaan ja muu nauha tyhjennet√§√§n.
 
 \qedhere
 
-T‰ss‰ todistuksessa havaitaan myˆs, ett‰ mik‰li algoritmin suoritus yhdell‰ koneella ei koskaan p‰‰ty, myˆsk‰‰n toisella koneella simuloitu suoritus ei koskaan p‰‰ty.
+T√§ss√§ todistuksessa havaitaan my√∂s, ett√§ mik√§li algoritmin suoritus yhdell√§ koneella ei koskaan p√§√§ty, my√∂sk√§√§n toisella koneella simuloitu suoritus ei koskaan p√§√§ty.
 
 \end{proof}
 \end{teor}
 
 \appendix
 
-\section{L‰hteet}
+\section{L√§hteet}
 J. Truss: Discrete Mathematics For Computer Scientists, 1999
 
 \end{document}
