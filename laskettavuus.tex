@@ -1,0 +1,264 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,longtable,listings,graphicx, float, epstopdf}
+\usepackage[finnish]{babel}
+\renewcommand{\contentsname}{Sisällysluettelo}
+\renewcommand{\abstractname}{Abstrakti}
+\newtheorem{mydef}{Määritelmä}
+\newtheorem{teor}{Teoreema}
+\newtheorem{example}{Esimerkki}
+\lstset{basicstyle=\small, frame=single}
+
+\begin{document}
+
+\title{Muodolliset koneet ja laskettavuus}
+\author{Juuso Valli}
+\date{21. 4. 2013}
+
+\maketitle
+
+\begin{abstract}
+Tässä tutkielmassa käsitellään laskettavuuden peruskäsitteitä, 
+tutustutaan rekisteri- ja Turingin koneisiin 
+sekä osoitetaan näiden olevan laskentakyvyltään identtisiä.
+\end{abstract}
+
+\tableofcontents
+
+\section{Laskettavuus}
+Eräs algoritmitutkimuksen peruskysymys on selvittää, mihin ongelmiin on mahdollista löytää ratkaisu algoritmisesti. Tämän selvittämiseksi on toisaalta tutkittava, onko sellaista ratkaisualgoritmia ylipäänsä olemassa, ja toisaalta onko sitä mahdollista suorittaa käytännössä. Ratkaisualgoritmin olemassaoloa ja käyttökelpoisuutta on kuitenkin vaikea osoittaa ilman että määritellään täsmällisesti, mitä algoritmilla tarkoitetaan.
+
+Epämuodollisesti määriteltynä algoritmi on äärellinen luettelo komentoja, joita noudattamalla saadaan ratkaisu annettuun ongelmaan. Yleensä algoritmin määritelmään liittyy myös ne vaatimukset, että algoritmin suorituksen tulee päättyä äärellisen ajan kuluttua ja että sen tulee tuottaa samalle syötteelle sama tulos joka ajokerralla. Tämä määritelmä on kuitenkin hyvin tulkinnanvarainen esimerkiksi siksi, että siitä ei käy ilmi, mitä tarkoitetaan komennolla. Tämän vuoksi mahdollisten komentojen joukkoa pyritäänkin rajoittamaan äärelliseksi useimmiten muodollisten koneiden avulla. On tärkeää huomata, että vaikka mahdollisten komentojen joukkoa pienennetään, monimutkaisemmat komennot voidaan toteuttaa yhdistelemällä tämän rajatun joukon komentoja. Tavoitteena olisi löytää mahdollisimman pieni komentokanta, jonka avulla voisi toteuttaa kaikki muut komennot. Lienee mahdotonta osoittaa että tällainen kanta olisi optimaalinen, mutta muutamia hyviä ehdokkaita kuitenkin tunnetaan.
+
+Kaikille ongelmille ei luonnollisesti löydy ratkaisualgoritmia. Mikäli sellainen algoritmi kuitenkin tunnetaan, tai voidaan osoittaa että sellainen on olemassa, ongelma katsotaan laskettavissa olevaksi. Koska epämuodollisen algoritmin olemassaolosta on vaikea osoittaa mitään suuntaan tai toiseen, tarkastellaankin usein vain tietyn tyyppisellä muodollisella koneella toteutettuja algoritmeja.
+
+Teoreettisesti toimivan algoritmin toteuttamiskelpoisuutta tarkastellaan muun muassa tutkimalla sen suoritusaikaa syötteen pituuden funktiona. Algoritmia pidetään yleisesti toteutettavana, jos sen suoritusajan yläraja voidaan esittää syötteen polynomifunktiona. Tällaista algoritmia kutsutaan polynomiaikaiseksi. Muita kriteerejä on esimerkiksi algoritmin tarvitseman muistin määrä.
+
+Muodollisilla koneilla ei ole kaikenkattavaa määritelmää, vaan jokainen määritellään eri tavoin. Seuraavassa osiossa tutustutaan muutamiin erityyppisiin muodollisiin koneisiin ja  tutkitaan niiden välisiä yhteyksiä.
+
+\section{Muodolliset kielet}
+
+Muodolliset kielet liittyvät läheisesti sellaisiin muodollisiin koneisiin, jotka käsittelevät merkkijonoja. Tällaisia ovat esimerkiksi äärelliset automaatit ja Turingin koneet. Olkoon $\Sigma$ äärellinen aakkosto. Muodollinen kieli $L$ on $\Sigma^*$:n osajoukko. $L$:n alkoita kutsutaan sanoiksi. $L$:n ajatellaan usein määräytyvän joistakin säännöistä, mutta tämä ei ole välttämätöntä.
+
+Olkoon $M$ muodollinen kone ja olkoon $w \in L$. $M(w)$ merkitsee koneen $M$ antamaa tulosta syötteellä $w$. Kone $M$ tunnistaa kielen $L(M) = \{w \in \Sigma^* | M(w) = '\text{kyllä}'\}$.
+
+
+\section{Automaatit}
+Automaatit ovat yksinkertaisia muodollisia koneita. Ne joko hyväksyvät tai hylkäävät annetun äärillisen merkkijonon. Muodollisesti määriteltynä automaatti $M$ on viisikko $(Q, \Sigma, \delta, q_0, F)$, jonka osat ovat
+\begin{itemize}
+\item Äärellinen tilajoukko $(Q)$
+
+\item Äärellinen aakkosto $(\Sigma)$
+
+\item Siirtymäfunktio $(\delta : Q \times \Sigma \rightarrow Q)$
+
+\item Alkutila $(q_0 \in Q)$
+
+\item Hyväksyvien tilojen joukko $(F \subset Q)$
+
+\end{itemize}
+
+Automaatti on aina jossakin tilassa $q \in Q$, alkutilanteessa $q = q_0$. Se lukee syötteestä yhden symbolin kerrallaan, olkoon tämä symboli $\sigma \in \Sigma$. Koneen nykyisen tilan ja luetun merkin perusteella se siirtyy tilaan $\delta (q, \sigma)$, ja siirtyy lukemaan seuraavaa symbolia. Kun koko syöte on käyty läpi tarkistetaan onko automaatin sen hetkinen tila joukossa $F$. Jos näin on, palautetaan vastaukseksi 'kyllä', muutoin 'ei'.
+
+Tällä tavoin määritelty muodollinen kone on monilta ominaisuuksiltaan käyttökelpoinen; se suoritus kestää aina lineaarisen ajan, ja sen suorittamiseen tarvittavan muistin määrä on vakio.
+
+\begin{example}
+$M = (\{q_0, q_1, q_2\}, \{a, b\}, \delta, q_0, \{q_0, q_1\})$ jossa siirtymäfunktio $\delta$ kuvataan seuraavalla graafilla:
+
+\begin{figure}[H]
+\centering
+\includegraphics{graph2.eps}
+\caption{Automaatin tilakaavio}
+\end{figure}
+
+Siirtymäfunktio voidaan myös kuvata taulukkona:
+\\
+\begin{center}
+\begin{tabular} {c | c c c}
+& $q_0$ & $q_1$ & $q_2$ \\
+\hline
+$a$ & $q_0$ & $q_2$ & $q_2$ \\
+$b$ & $q_1$ & $q_1$ & $q_2$ \\
+\end{tabular}
+\end{center}
+
+Tämä kone hyväksyy vain merkkijonot, jotka ovat muotoa $a^nb^m$, $n, m \in \mathbb{N}$.
+
+Jos syötteeksi annetaan esimerkiksi merkkijono aaabb, suoritus etenisi seuraavasti:\\
+
+\begin{center}
+\begin{tabular}{r c l }
+Tila & Merkki & Jäljellä oleva syöte \\
+$q_0$ & a & aabb \\
+$q_0$ & a & abb \\
+$q_0$ & a & bb \\
+$q_0$ & b & b \\
+$q_1$ & b & \\
+$q_1$ & & \\
+\end{tabular}
+\end{center}
+
+Koska $q_1 \in F$, kone antaa tulokseksi 'kyllä'.
+
+Toisaalta jos syötteenä olisi aba, suoritus etenisikin seuraavasti:
+\\
+\begin{center}
+\begin{tabular}{r c l }
+Tila & Merkki & Jäljellä oleva syöte \\
+$q_0$ & a & ba \\
+$q_0$ & b & a \\
+$q_1$ & a &  \\
+$q_2$ & & \\
+\end{tabular}
+\end{center}
+
+Koska $q_2 \notin F$, kone antaisi tulokseksi 'ei'.
+
+\begin{proof}
+Olkoon sana $w \in \Sigma^*$. Olkoon $L \subset \Sigma^*$ siten että $L$ sisältää täsmäl-\\leen muotoa $a^*b^*$ olevat sanat. Jos $w \in L$, niin automaatti selvästi palauttaa tuloksen 'kyllä'. Jos $w \notin L$, niin sen täytyy sisältää ainakin yksi $ba$-pari. Tämä riittää siirtämään automaatin mistä hyvänsä tilasta tilaan $q_2$. Mikään merkki ei siirrä automaattia tilasta $q_2$ mihinkään muuhun tilaan, joten suorituksen päätyttyä kone on edelleen tilassa $q_2$, ja palauttaa siis tulokseksi 'ei'.
+\qedhere
+\end{proof}
+\end{example}
+
+Äärellisillä automaateilla on kuitenkin monia rajoitteita. On runsaasti esimerkkejä ongelmista, jotka intuitiivisesti olisivat ratkaistavissa, mutta joita ei voi laskea äärellisen automaatin avulla. Tällaisia ongelmia ovat esimerkiksi 'Onko annettu suljelauseke oikein muodostettu?' tai 'Onko merkkijono muotoa $a^nb^n$?'. Onkin selvää, että äärelliset automaatit eivät ole riittävän yleisiä toteuttaakseen kaikki algoritmit.
+
+\begin{teor}
+Ei ole olemassa äärellistä automaattia $M$, joka tunnistaa kielen $L = \{a^nb^n | n \geq 0\}$.
+\end{teor}
+\begin{proof}
+Olkoon $M$ äärellinen automaatti, jolla on $n$ tilaa. Mikä tahansa merkkijono, jonka pituus on vähintään kuin $n$ aiheuttaa sen, että jokin koneen tiloista toistetaan. Merkitään tätä tilaa $S$. Siirtymä tämän tilan ensimmäisestä ilmentymästä toiseen vastaa jotakin käsitellyn merkkijonon osaa. Olkoon tämä osa $y$. Jos kone on tilassa $S$ ja se saa syötteekseen $w$:n, päätyy se taas tilaan $S$. Tästä seuraa, että jos automaatti hyväksyy sanan $w = xyz$, täytyy sen hyväksyä sana $xy^iz, i \geq 0$.
+
+Sovelletaan tätä nyt kielen $L$ tapaukseen. Olkoon $w = a^mb^m, m > n$. Tällöin on olemassa sellainen jako $i + j + k = m, j > 0$, että kone $M$ tunnistaa sanat $a^ia^{j*p}a^kb^m, p \in \mathbb{N}$. Näistä kuitenkin vain yksi kuuluu kieleen $L$, joten $L(M) \neq L$.
+\qedhere
+\end{proof}
+
+
+\section{Rekisterikoneet}
+Shepherdsonin ja Sturgisin rekisterikoneet ovat rakenteellisesti hyvin yksinkertaisia. Koneella on $R$ rekisteriä, joista kukin muistaa yhden luonnollisen luvun. Rekisterin $n$ arvoon viitataan merkinnällä \={n}. Suoritettava algoritmi esitetään numeroituna luettelona, joka koostuu hyvin yksinkertaisista komennoista. Merkitään näitä komentoja $\hat{1}$, $\hat{2}$, ... , $\hat{M}$. Algoritmin alkuarvot ovat tallennettu rekistereihin. Rekisterikone tunnistaa kolme erilaista komentoa: $(n,j)$, $(n,j,k)$ sekä lopetuskomennon $\hat{M}$. Kahden ensimmäisen komennon merkitykset ovat:
+
+\begin{tabular}{c l}
+$(n, j)$ & Lisää 1 rekisteriin n ja siirry komentoon j. \\
+$(n, j, k)$ & Jos $\bar{n} > 0$, vähennä 1 rekisteristä n ja siirry komentoon j; \\
+& muutoin siirry komentoon k.\\
+\end{tabular}
+
+
+Näillä sinänsä yksinkertaisilla säännöillä on mahdollista suorittaa monimutkaisiakin laskutoimituksia.
+
+\begin{example}
+Määritellään rekisterikone joka suorittaa yhteenlaskun.
+\\
+\begin{math} \\
+R = 2, M = 3 \\
+\hat{1} (2,2,3) \\
+\hat{2} (1,1) \\
+\hat{3} \text{Seis}\\
+\end{math}
+\\
+Olkoon rekisterien arvot alkutilanteessa (3, 2). Ohjelman suoritus etenisi seuraavalla tavalla:\\ \\
+\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics{graph3.eps}
+\caption{Esimerkki rekisterikoneen toiminnasta}
+\end{center}
+\end{figure}
+
+
+\end{example}
+
+% Esimerkkejä muista ohjelmista.
+
+
+\section{Turingin koneet}
+Turingin koneet ovat ensimmäinen tunnettu muodollinen kone. Alan Turing esitteli sen vuonna 1937, kun käytti sitä apuvälineenä ratkaistakseen David Hilbertin vuonna 1928 esittämän päätösongelman.
+Turingin koneet poikkeavat rakenteellisesti rekisterikoneista huomattavasti ja muistuttavat enemmänkin äärellisiä tilakoneita. Muodollisesti määriteltynä Turingin koneella on seitsemän komponenttia $(Q, \Sigma, \Gamma, \delta, q_0, B, F)$, jossa
+
+\begin{itemize}
+\item Äärellinen tilajoukko $(Q)$
+\item Nauha-aakkosto $(\Gamma)$
+\item Syöteaakkosto $(\Sigma \subset \Gamma)$
+\item Siirtymäfunktio $(\delta : Q \times \Gamma \rightarrow Q \times \Gamma \times {L,R} \cup {\emptyset})$
+\item Alkutila $(q_0)$
+\item 'Tyhjä' nauhasymboli $(B \in \Gamma - \Sigma)$
+\item Hyväksyvien tilojen joukko $(F \subseteq Q)$
+\end{itemize}
+
+Turingin koneiden ajatellaan käsittelevän kaksisuuntaisesti ääretöntä nauhaa, jonka jollekin äärelliselle alueelle on kirjoitettu symboleja. Muu nauha sisältää vain symbolia $B$ ('blank' eli tyhjä).
+Turingin koneet toimivat kuten äärelliset automaatit lukuun ottamatta kahta merkittävää eroa. Ne voivat siirtyä nauhaa sekä eteen- että taaksepäin, ja ne voivat muuttaa nauhan sisältöä.
+
+Alkutilanteessa Kone aloittaa syötteen vasemmasta reunasta, tilassa $q_0 \in Q$. Kone lukee yhden merkin ja päättää sen perusteella mihin tilaan siirtyä, minkä merkin kirjoittaa nauhalle luetun merkin tilalle ja siirtyäkö oikealle vai vasemmalle. Suoritus päättyy vasta, kun siirtymäfunktio $\delta$ palauttaa arvon $\emptyset$. Sen jälkeen verrataan senhetkistä tilaa joukkoon F kuten äärellisten automaattien tapauksessa.
+
+
+%Esimerkki Turingin koneen toiminnasta, ehkä määritellään kone joka tekee jotain, annetaan parin askeleen esimerkki
+\begin{example}
+Olkoon $M$ Turingin kone siten, että\\$M = (\{q_0, q_a, q_b, q_r, q_e\}, \{a, b\}, \{a, b, B\}, \delta, q_0, B, \{s\})$ missä $\delta$ toimii seuraavan taulukon mukaisesti:
+
+\begin{tabular}{r | l l l}
+& a & b & B \\
+\hline
+$q_0$ & $(q_a, B, R)$ & $(q_e, b, R)$ & $\emptyset$ \\
+$q_a$ & $(q_a, a, R)$ & $(q_a, b, R)$ & $(q_b, B, L)$ \\
+$q_b$ & $(q_e, a, R)$ & $(q_r, B, L)$ & $(q_e, B, R)$\\
+$q_r$ & $(q_r, a, L)$ & $(q_r, b, L)$ & $(q_0, B, R)$\\
+$q_e$ & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ 
+\end{tabular}
+
+Tällä tavoin määritelty Turingin kone tunnistaa kielen $\{a^nb^n | n \geq 0\}$, jota äärelliset automaatit eivät pysty tunnistamaan.
+
+\end{example}
+
+\section{Funktioiden esittäminen muodollisella koneella}
+
+Useimmissa tapauksissa ei riitä, että algoritmi tuottaa kyllä/ei -vastauksen, vaan algoritmin toivotaan tuottavan esimerkiksi laskutoimituksen tuloksen. Näissä tapauksissa ei ole tärkeää se, missä tilassa kone on lopettaessaan suorituksen, vaan se, mitä rekistereissä tai nauhalla on. Lopetustilan tarkestelu ei tällaisissa tapauksissa ole tarpeellista, vaan voimme pitää kaikkia lopetustiloja hyväksyttävinä.
+
+Se, miten algoritmi palauttaa vastauksen, on sopimuskysymys. Turingin koneen tapauksessa vastaus luetaan nauhalta suorituksen päätyttyä, ja rekisterikoneen tapauksessa tulos tallennetaan yleensä rekisteriin yksi.
+
+\section{Rekisterikoneiden ja Turingin koneiden\\ välinen yhteys}
+
+Vaikka Turingin koneet ja rekisterikoneet ovat rakenteellisesti hyvin erilaisia, ovat ne kuitenkin osoittautuneet laskukyvyltään ekvivalenteiksi. Jos ongelma on ratkaistavissa rekisterikoneella, se on myös ratkaistavissa Turingin koneella ja päinvastoin. Se, että näinkin erilaiset koneet ovat yhtä ilmaisuvoimaisia, viittaa siihen, että olemme lähestymässä käyttökelpoista tapaa määritellä laskettavuuden käsite. Laskettavuus samaistetaankin usein laskettavuuteen Turingin koneilla.
+
+\begin{teor}
+Olkoon $f$ k:n muuttujan funktio. $f$ on laskettavissa rekisterikoneella jos ja vain jos se on laskettavissa Turingin koneella.
+\begin{proof}
+Osoitetaan ensin, että annetun Turingin koneen M toimintaa voidaan simuloida sopivasti rakennetulla rekisterikoneella. Jos tämä pitää paikkansa, mikä tahansa Turingin koneella ratkaistavissa oleva ongelma voidaan ratkaista myös rekisterikoneella tarvittaessa simuloimalla ko. Turingin koneen toimintaa. Tämän jälkeen osoitetaan, että sama pätee myös toiseen suuntaan.
+
+Olkoon M Turingin kone. M:n tämän hetkinen konfiguraatio koostuu nauhan sisällöstä, tällä hetkellä tutkittavasta symbolista sekä koneen tilasta. Vaikka nauha on ääretön, voimme mallintaa sitä äärellisenä, sillä vain äärellisen moni merkki on epätyhjä. Nauha-aakkosto on äärellinen, joten nauhan sen hetkinen tila voidaan ilmaista yhtenä lukuna alkulukukoodauksella. Tallennetaan tämä ensimmäiseen rekisteriin, jota ei käytetä syötteen vastaanottamiseen. Seuraavaan rekisteriin tallennetaan tutkittavan merkin sijaintia vastaava luonnollinen luku, ja sitä seuraavaan koneen tämän hetkistä tilaa vastaava luku.
+\begin{figure}[H]
+\centering
+\includegraphics{graph5.eps}
+\caption{Rekistereiden valinta}
+\end{figure}
+Tämän jälkeen voidaan kuvailla rekisterikoneen varsinainen toiminta. Jokaista paria $(q_i, a), q_i \in Q, a \in \Gamma$ kohden on komentosarja, joka muokkaa rekistereitä niin, että se vastaa sitä mitä koneessa M olisi tapahtunut. Jos $\delta(q_i, a) = \emptyset$ koneen tulisi pysähtyä, mutta tässä tapauksessa tulee ensin purkaa ja kopioida nauharekisterin sisältö tulosrekisteriin. Jos $\delta(q_i, a) = (q_j, b, L)$ tai $(q_j, b, R)$ tulee kirjoittaa komentosarja joka muokkaa kolmea tilarekisteriä koneen M tavoin. Tällaisten komentosarjojen tuottaminen täsmällisesti on varsin työlästä, mutta ei kovin vaikeaa.
+% Esimerkki tästä?
+
+Näiden lisäksi joudumme myös määrittelemään tällaisen koneen aloitustilan. Tämä tapahtuu asettamalla syötenauhaa vastaava luku nauharekisteriin, 1 käsiteltävän merkin numeroksi sekä 0 koneen tilaksi.
+
+Käänteisesti tulee rakentaa sellainen Turingin kone, joka pystyy simuloimaan annetun rekisterikoneen toimintaa. Olkoon rekisterikoneella R rekisteriä. Tällöin tallennetaan yhden rekisterin sisällön koodattuna joka R:nteen muistipaikkaan valitusta rajasta eteenpäin. Esimerkiksi jos $R = 2$, joka toinen nauhan muistipaikka kuuluisi rekisteriin 1 ja joka toinen rekisteriin 2. Yksinkertaisuuden vuoksi tässä käytetään additiivista koodausta, vaikka sen voisi tallettaa tehokkaamminkin, esimerkiksi multiplikatiivisesti. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics{graph4b.eps}
+\caption{Rekisterien sijoittelu nauhalle tapauksessa R = 3. $(3, 2, 0)$}
+\end{center}
+\end{figure}
+
+Ensimmäiseksi annettu syöte tulee muuntaa edellä kuvattuun muotoon. Tarvittavan aliohjelman teko on helppoa.
+
+Sen jälkeen kirjoitetaan aliohjelmat, jotka suorittavat samat toiminnot kuin $(n, j)$ ja $(n, j, k)$. Kannattanee pitää tarkoitukseen varattua merkkiä rekisterialueen vasemmalla puolen, jotta se löytyy helpommin. Tässä tarkoitukseen käytetään merkkiä 1. Olkoon Turingin koneen lukupää tällä merkillä seuraavia aliohjelmia varten, ja olkoon se komentoa $(n, j)$ vastaavassa tilassa. Aluksi kone siirtyy $n-1$ merkkiä oikealle, jolloin se saavutta rekisteriä n vastaavan alueen. Tämän jälkeen se siirtyy oikealle R:n pituisin askelin, kunnes se löytää tyhjän merkin. Kone asettaa sen 0:ksi, palaa takaisin vasemmalle merkin 1 luokse ja muuttaa tilansa rekisterikoneen komentoa \^j vastaavaksi. Tällä tavoin rekisterin n arvoa on kasvatettu yhdellä. Olkoon kone nyt komentoa $(n, j, k)$ vastaavassa tilassa. Kone siirtyy ensin $n - 1$ merkkiä oikealle. Jos sillä kohdalla oleva merkki on tyhjä, palataan kohtaan 1 ja siirrytään rekisterikoneen komentoa \^k vastaavaan tilaan. Jos merkki ei ollut tyhjä, siirrymme oikealle R:n pituisin askelin kunnes löydämme tyhjän merkin. Siirrymme R merkkiä vasemmalle, merkitsemme sen tyhjäksi, siirrymme takaisin merkin 1 luo ja siirrymme komentoa \^j vastaavaan tilaan.
+
+Kun komento 'Seis' saavutetaan, ensimmäisen rekisterin sisältö talletetaan ja muu nauha tyhjennetään.
+
+\qedhere
+
+Tässä todistuksessa havaitaan myös, että mikäli algoritmin suoritus yhdellä koneella ei koskaan pääty, myöskään toisella koneella simuloitu suoritus ei koskaan pääty.
+
+\end{proof}
+\end{teor}
+
+\appendix
+
+\section{Lähteet}
+J. Truss: Discrete Mathematics For Computer Scientists, 1999
+
+\end{document}
