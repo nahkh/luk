@@ -13,7 +13,7 @@
 
 \title{Muodolliset koneet ja laskettavuus}
 \author{Juuso Valli}
-\date{21. 4. 2013}
+\date{13. 12. 2016}
 
 \maketitle
 
@@ -25,22 +25,35 @@ sekä osoitetaan näiden olevan laskentakyvyltään identtisiä.
 
 \tableofcontents
 
+\newpage
+
+\section{Algoritmit ja muodolliset koneet}
+Algoritmilla tarkoitetaan äärellistä luetteloa ohjeita tai komentoja, joita noudattamalla voidaan ratkaista jokin tietty ongelma. Ratkaisulla tarkoitetaan yleensä vastausta kyllä-ei kysymykseen tai jonkinlaista numeerista tulosta annetun syötteen perusteella. Euclideen algoritmi kahden luvun suurimman yhteisen tekijän selvittämiseen on eräs vanhimmista tunnetuista algoritmeista. Algoritmit ovat historiallisesti olleet merkittävä osa käytännön matematiikkaa; tavallisimpien algoritmien tuntemus on mahdollistanut monimutkaisten ongelmien matemaattisen ratkaisemisen ilman syvällistä ymmärrystä. Mikäli oppilas pystyy oppimaan algoritmin, hän pystyy yksinkertaisia ohjeita noudattamalla ratkaisemaan kokonaisen luokan ongelmia. Tässä merkityksessä algoritmit eivät ole menettäneet arvoaan, matematiikan alkeisopetus nojaa edelleen vahvasti yksinkertaisten algoritmien opetteluun. Algoritmien toinen vahvuus seuraa siitä tosiasta, että algoritmin suorittajan ei tarvitse olla ajatteleva ihminen. Sopivalla tavalla suunniteltu mekaaninen tai sähköinen kone pystyy myös noudattamaan algoritmin ohjeita. Tämä tarjoaa ihmissuorittajaan verrattuna lukuisia etuja. Koneen suorittamat algoritmit ovat vähemmän alttiita virheille ja useimmissa tapauksissa huomattavasti ihmistä nopeampia. Toisaalta ihmiset pystyvät käsittelemään paljon vapaamuotoisempia algoritmeja. Koneet yleensä pystyvät käsittelemään vain hyvin rajallista komentokantaa. 
+
+Algoritmin komentokanna rajoittamisesta on etua. Täysin vapaamuotoisia algoritmeja on vaikea tutkia; algoritmin oikeellisuus on vaikea todistaa täsmällisesti, algoritmin tulos voi vaihdella komentojen tulkinnan mukaan, ja kahden algoritmin vertailu on lähes mahdotonta. Muodollisen määrittelyn kautta päästään eroon monista epävarmuuksista. Komennot ovat yksiselitteisiä, ja kahden algoritmin suoritusaikaa voidaan verrata laskemalla suoritettujen komentojen lukumäärä. Algoritmin oikeellisuus on usein helpompi todistaa ja joskus voidaan osoittaa että ratkaisualgoritmia ei ole olemassa tämän komentokannan puitteissa.
+
+Komentokannan käsite on vahvasti sidoksissa siihen, millainen algoritmin suorittajan ajatellaan olevan. Vapaamuotoisen algoritmin suorittajan ajatellaan olevan ihminen. Muissa tapauksissa algoritmin suorittaja on jollakin tavalla määritelty muodollinen kone. Muodollisilla koneilla ei ole kaikenkattavaa määritelmää, vaan jokainen määritellään eri tavoin. Muodollisesta koneesta käytetään tässä merkintää $M : S \rightarrow R$, missä $S$ on syöte ja $R$ on algoritmin tulos. On tärkeä huomata että tässä $M$ ei ole funktio $S \rightarrow R$, sillä muodollinen kone ei välttämättä koskaan lopeta suoritusta annetulla syötteellä. Kone $M$ voidaan täydentää funktioksi $S \rightarrow R \bigcup \{ \dot{\infty} \}$ missä $\dot{\infty} \notin R$ tarkoittaa että $M$ ei pysähdy äärellisessa ajassa.
+
+Tietyllä tavalla määriteltyjen muodollisen koneiden avaruudesta käytetään tässä merkintää $\hat{M}$.
+
+
 \section{Laskettavuus}
-Eräs algoritmitutkimuksen peruskysymys on selvittää, mihin ongelmiin on mahdollista löytää ratkaisu algoritmisesti. Tämän selvittämiseksi on toisaalta tutkittava, onko sellaista ratkaisualgoritmia ylipäänsä olemassa, ja toisaalta onko sitä mahdollista suorittaa käytännössä. Ratkaisualgoritmin olemassaoloa ja käyttökelpoisuutta on kuitenkin vaikea osoittaa ilman että määritellään täsmällisesti, mitä algoritmilla tarkoitetaan.
+Eräs algoritmitutkimuksen peruskysymys on selvittää, mitkä ongelmat ovat ratkaistavissa algoritmisesti. Tämä vaatii ensin muodollisen määritelmän ongelmalle ja sen ratkaisulle.
 
-Epämuodollisesti määriteltynä algoritmi on äärellinen luettelo komentoja, joita noudattamalla saadaan ratkaisu annettuun ongelmaan. Yleensä algoritmin määritelmään liittyy myös ne vaatimukset, että algoritmin suorituksen tulee päättyä äärellisen ajan kuluttua ja että sen tulee tuottaa samalle syötteelle sama tulos joka ajokerralla. Tämä määritelmä on kuitenkin hyvin tulkinnanvarainen esimerkiksi siksi, että siitä ei käy ilmi, mitä tarkoitetaan komennolla. Tämän vuoksi mahdollisten komentojen joukkoa pyritäänkin rajoittamaan äärelliseksi useimmiten muodollisten koneiden avulla. On tärkeää huomata, että vaikka mahdollisten komentojen joukkoa pienennetään, monimutkaisemmat komennot voidaan toteuttaa yhdistelemällä tämän rajatun joukon komentoja. Tavoitteena olisi löytää mahdollisimman pieni komentokanta, jonka avulla voisi toteuttaa kaikki muut komennot. Lienee mahdotonta osoittaa että tällainen kanta olisi optimaalinen, mutta muutamia hyviä ehdokkaita kuitenkin tunnetaan.
+\begin{mydef}
+Ongelma $P : S \rightarrow R$ missä S on ongelman syöteavaruus ja R odotettujen tulosten avaruus.
+\end{mydef}
+\begin{mydef}
+Kone $M$ ratkaisee ongelman $ \Leftrightarrow \forall s \in S : M(s) = P(s)$
+\end{mydef}
 
-Kaikille ongelmille ei luonnollisesti löydy ratkaisualgoritmia. Mikäli sellainen algoritmi kuitenkin tunnetaan, tai voidaan osoittaa että sellainen on olemassa, ongelma katsotaan laskettavissa olevaksi. Koska epämuodollisen algoritmin olemassaolosta on vaikea osoittaa mitään suuntaan tai toiseen, tarkastellaankin usein vain tietyn tyyppisellä muodollisella koneella toteutettuja algoritmeja.
-
-Teoreettisesti toimivan algoritmin toteuttamiskelpoisuutta tarkastellaan muun muassa tutkimalla sen suoritusaikaa syötteen pituuden funktiona. Algoritmia pidetään yleisesti toteutettavana, jos sen suoritusajan yläraja voidaan esittää syötteen polynomifunktiona. Tällaista algoritmia kutsutaan polynomiaikaiseksi. Muita kriteerejä on esimerkiksi algoritmin tarvitseman muistin määrä.
-
-Muodollisilla koneilla ei ole kaikenkattavaa määritelmää, vaan jokainen määritellään eri tavoin. Seuraavassa osiossa tutustutaan muutamiin erityyppisiin muodollisiin koneisiin ja  tutkitaan niiden välisiä yhteyksiä.
+Ongelman $P$ sanotaan olevan ratkaistavissa konetyypillä $\hat{M}$ mikäli on olemassa sellainen $M \in \hat{M}$ joka ratkaisee $P$:n. Mikäli ongelma $P$ on ratkaistavissa jollakin konetyypillä, kutsutaan sitä laskettavissa olevaksi. On tärkeää huomata että ongelma on ratkaistavissa mikäli voidaan osoittaa että sille on olemassa ratkaisu, vaikka ratkaisua ei suoraan tunnettaisikaan. Kaikille ongelmille ei luonnollisesti löydy ratkaisualgoritmia.
 
 \section{Muodolliset kielet}
 
-Muodolliset kielet liittyvät läheisesti sellaisiin muodollisiin koneisiin, jotka käsittelevät merkkijonoja. Tällaisia ovat esimerkiksi äärelliset automaatit ja Turingin koneet. Olkoon $\Sigma$ äärellinen aakkosto. Muodollinen kieli $L$ on $\Sigma^*$:n osajoukko. $L$:n alkoita kutsutaan sanoiksi. $L$:n ajatellaan usein määräytyvän joistakin säännöistä, mutta tämä ei ole välttämätöntä.
+Muodolliset kielet liittyvät läheisesti sellaisiin muodollisiin koneisiin, joiden syöte on merkkijono ja jotka joko hyväksyvät tai hylkäävät saamansa syötteen. Tällaisia ovat esimerkiksi äärelliset automaatit ja Turingin koneet. Olkoon $\Sigma$ äärellinen aakkosto. Muodollinen kieli $L$ on $\Sigma^*$:n osajoukko. $L$:n alkoita kutsutaan sanoiksi. $L$:n ajatellaan usein määräytyvän joistakin säännöistä, mutta tämä ei ole välttämätöntä.
 
-Olkoon $M$ muodollinen kone ja olkoon $w \in L$. $M(w)$ merkitsee koneen $M$ antamaa tulosta syötteellä $w$. Kone $M$ tunnistaa kielen $L(M) = \{w \in \Sigma^* | M(w) = '\text{kyllä}'\}$.
+Olkoon $M : \Sigma^* \rightarrow \{ '\text{kyllä}', '\text{ei}' \}$ muodollinen kone ja olkoon $w \in L$. $M(w)$ merkitsee koneen $M$ antamaa tulosta syötteellä $w$. Kone $M$ tunnistaa kielen $L(M) = \{w \in \Sigma^* | M(w) = '\text{kyllä}'\}$.
 
 
 \section{Automaatit}
@@ -120,13 +133,13 @@ Olkoon sana $w \in \Sigma^*$. Olkoon $L \subset \Sigma^*$ siten että $L$ sisäl
 \end{proof}
 \end{example}
 
-Äärellisillä automaateilla on kuitenkin monia rajoitteita. On runsaasti esimerkkejä ongelmista, jotka intuitiivisesti olisivat ratkaistavissa, mutta joita ei voi laskea äärellisen automaatin avulla. Tällaisia ongelmia ovat esimerkiksi 'Onko annettu suljelauseke oikein muodostettu?' tai 'Onko merkkijono muotoa $a^nb^n$?'. Onkin selvää, että äärelliset automaatit eivät ole riittävän yleisiä toteuttaakseen kaikki algoritmit.
+Äärellisillä automaateilla on kuitenkin monia rajoitteita. On runsaasti esimerkkejä ongelmista, jotka intuitiivisesti olisivat ratkaistavissa jollaking algoritmilla, mutta joita ei voi laskea äärellisen automaatin avulla. Tällaisia ongelmia ovat esimerkiksi 'Onko annettu suljelauseke oikein muodostettu?' tai 'Onko merkkijono muotoa $a^nb^n$?'. Onkin selvää, että äärelliset automaatit eivät ole riittävän yleisiä toteuttaakseen kaikkia algoritmeja.
 
 \begin{teor}
 Ei ole olemassa äärellistä automaattia $M$, joka tunnistaa kielen $L = \{a^nb^n | n \geq 0\}$.
 \end{teor}
 \begin{proof}
-Olkoon $M$ äärellinen automaatti, jolla on $n$ tilaa. Mikä tahansa merkkijono, jonka pituus on vähintään kuin $n$ aiheuttaa sen, että jokin koneen tiloista toistetaan. Merkitään tätä tilaa $S$. Siirtymä tämän tilan ensimmäisestä ilmentymästä toiseen vastaa jotakin käsitellyn merkkijonon osaa. Olkoon tämä osa $y$. Jos kone on tilassa $S$ ja se saa syötteekseen $w$:n, päätyy se taas tilaan $S$. Tästä seuraa, että jos automaatti hyväksyy sanan $w = xyz$, täytyy sen hyväksyä sana $xy^iz, i \geq 0$.
+Olkoon $M$ äärellinen automaatti, jolla on $n$ tilaa. Mikä tahansa merkkijono, jonka pituus on vähintään $n$ aiheuttaa sen, että jokin koneen tiloista toistetaan. Merkitään tätä tilaa $S$. Siirtymä tämän tilan ensimmäisestä ilmentymästä toiseen vastaa jotakin käsitellyn merkkijonon osaa. Olkoon tämä osa $y$. Jos kone on tilassa $S$ ja se saa syötteekseen $y$:n, päätyy se taas tilaan $S$. Tästä seuraa, että jos automaatti hyväksyy sanan $w = xyz$, täytyy sen hyväksyä sana $xy^iz, i \geq 0$.
 
 Sovelletaan tätä nyt kielen $L$ tapaukseen. Olkoon $w = a^mb^m, m > n$. Tällöin on olemassa sellainen jako $i + j + k = m, j > 0$, että kone $M$ tunnistaa sanat $a^ia^{j*p}a^kb^m, p \in \mathbb{N}$. Näistä kuitenkin vain yksi kuuluu kieleen $L$, joten $L(M) \neq L$.
 \qedhere
