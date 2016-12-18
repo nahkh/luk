@@ -1,0 +1,66 @@
+Korjauksia
+-----------
+
+Juuso Vallin LuK-tutkielma
+--------------------------
+
+Otsikko voisi olla Rekisterikone ja Turingin kone.
+
+Euclid = Eukleides
+muodollinen kone = formaalinen kone
+teoreema = lause
+
+M‰‰ritelm‰t ja esimerkit kirjoitetaan pystyfontilla.
+M‰‰ritelmiss‰ m‰‰ritelt‰v‰t k‰sitteet kirjoitetaan
+kursiivilla.
+
+Yksinkertaisetkin kaavat, kuten muuttujien nimet, pit‰isi
+LaTeX-koodata matematiikkatilassa. Esimerkiksi "Lis‰‰ 1
+rekisteriin $n$ ja siirry komentoon $j$."
+
+Kolme pistett‰ koodataan \dots.
+
+Siirtym‰funktion \delta m‰‰ritelm‰st‰ puuttuu joukkosulut
+{}, ne koodataan \{ ja \}.
+
+M‰‰ritelm‰t, lauseet ja esimerkit voisi kaikki numeroida
+yhdell‰ numeroinnilla.
+
+Hyv‰, ett‰ sulla on omaper‰iset esimerkit.
+
+Esimerkiss‰ ei ole yleens‰ todistusta. Esimerkiss‰ 1
+kuitenkin on todistus, joka tulee siksi lukijalle yll‰tt‰in.
+T‰ss‰ haluat todistaa, ett‰ esimerkin automaatti tunnistaa kielen
+L = {a^nb^m | n, m \in \N}. Voisi tehd‰ niin, ett‰
+esimerkiss‰ 1 n‰ytet‰‰n automaatti. Sen j‰lkeen tulisi
+lause, jossa sanotaan, ett‰ esimerkin automaatti
+tunnistaa kielen L, ja sen per‰‰n tulee t‰m‰ jo
+kirjoitettu todistus.
+
+Esimerkiss‰ 3 lopputilaksi on merkitty s, mutta s ei
+kuulu joukkoon Q?
+
+Lauseen 2 voisi jakaa kahtia. Toisessa koodataan Turingin
+kone ja toisessa rekisterikone. Per‰‰n tulisi
+sopivat esimerkit, joista puhun lis‰‰ alempana.
+Lopuksi voisi laittaa seurauksen, joka sanoisi nykyisen
+lauseen sis‰llˆn.
+
+Selit‰ 'prime power coding' eli alkulukukoodaus,
+lis‰‰ myˆs esimerkki siit‰. (Example 9.6 s.395)
+
+Selit‰ unaariesitys. (= 'additiivinen koodaus')
+Mit‰ oikeastaan on kuvassa 4? Onko siin‰ tyhj‰t
+rekisterit vai jokin syˆttˆ?
+
+Voisi lis‰t‰ kaksi esimerkki‰, joista toisessa simuloidaan
+yksinkertaista Turingin konetta rekisterikoneella ja
+toisessa rekisterikonetta Turingin koneella.
+Molempien esimerkkien tarkoitus on havainnollistaa lauseen 2 todistusta.
+
+Toisessa esimerkiss‰ voisi ehk‰ kokeilla koodata esimerkin 2
+rekisterikonetta Turingin koneeksi.
+
+L‰hteeseen tulee kustantaja ennen painovuotta ja
+loppuun piste.
+
