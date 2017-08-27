@@ -266,7 +266,12 @@ Valitaan bijektio $f_Q : Q \rightarrow \mathbb{N}_{<|Q|}$. Tilan $q \in Q$ \emph
 \end{mydef}
 
 \begin{mydef}
-Puolinauhan T \emph{kokonaislukuesitys} on $f(T) = \Sigma_{i=0}^{\infty} f_\Gamma(T(i)) \times |\Gamma|^i$
+Puolinauhan T \emph{kokonaislukuesitys} on 
+\begin{center}
+\begin{math}
+f(T) = \Sigma_{i=0}^{\infty} f_\Gamma(T(i)) \times |\Gamma|^i
+\end{math}
+\end{center}
 \end{mydef}
 
 \begin{example}
@@ -284,12 +289,16 @@ Olkoon $M$ Turingin kone. Lauseen todistamiseksi rakennetaan sellainen rekisteri
 $M$:n suoritusaikainen kokonaistila koostuu nauhan sisällöstä, lukupään sijainnista ja koneen tilasta. Numeroidaan ensin $M$:n nauha-aakkosto numeroilla $0 ... |\Gamma|-1$ siten että tyhjä nauhasymboli $B$ merkitään nollana. Numeroidaan lisäksi tilajoukko $Q$ numeroilla $0 ... |Q| - 1$. Nauhan sisältö ja lukupään sijainti voidaan yhdessä mallintaa kolmella rekisterillä, joista yksi sisältää lukupään vasemmalla puolella olevan puolinauhan kokonaislukuesityksenä, toinen sisältää lukupään kohdalla olevan merkin kokonaislukuesityksen ja kolmas sisältää lukupään oikealla puolella olevan puolinauhan kokonaislukuesityksen. Koneen tila esitetään neljäntenä rekisterinä joka sisältää tilan kokonaislukuesityksen. Lisäksi tarvitaan rajallinen määrä laskureistereitä kerto- ja jakolaskuja varten.
 
 Koneen aloitustila on
-\begin{math} \\
-1\quad f(T_{-1, L}) = 0 \\
-2\quad f_{\Gamma}T(0) \\
-3\quad f(T_{1, R})\\
-4\quad f_Q(q_0)\\
-\end{math}
+\begin{center}
+\begin{tabular}{l l}
+Rekisteri & Tila \\
+\hline
+1 & $f(T_{-1, L}) = 0$ \\
+2 & $f_{\Gamma}(T(0))$ \\
+3 & $f(T_{1, R})$ \\
+4 & $f_Q(q_0)$ \\
+\end{tabular}
+\end{center}
 Muissa rekistereissä aloitusarvo on 0.
 
 Komentosarjan alussa on sarja $|\Gamma|$ muotoa $\hat{i} (2, i+1, p_i)$ olevia komentoja, jotka valitsevat luettua merkkiä vastaavan komentosarjan. Koska luettuja merkkejä on vain $|\Gamma|$ kappaletta, tiedetään että jokin sarjan komennoista johtaa komentoon $p_i$. Jokainen $p_i$-komento aloittaa vastaavanlaisen $|Q|$ komentoa pitkän sarjan muotoa $\hat{j} (4, j+1, q_{i,k})$  olevia komentoja. Jokainen $q_{i,j}$ komento vastaa siis Turingin koneen merkki-tila-yhdistelmää. Nämä komennot joko lopettavat ohjelman suorituksen tai aloittavat sarjan komentoja jotka asettavat uuden merkin rekisteriin 2 ja uuden tilan rekisteriin 4. Tällä tavoin olemme simuloineet $M$:n tilatransitiofunktion toiminnan.
@@ -297,18 +306,26 @@ Komentosarjan alussa on sarja $|\Gamma|$ muotoa $\hat{i} (2, i+1, p_i)$ olevia k
 Viimeisenä alkuperäinen kone $M$ siirtyisi joko vasemmalle tai oikealle. Nämä operaatiot ovat lähes identtisiä, joten tarkastellaan tässä vain oikealle siirtymistä.
 
 Mikäli $M$:n lukupää on asemassa $n$, $M'$:n kolmessa ensimmäisessä rekisterissä ovat arvot 
-\begin{math} \\
-1\quad f(T_{n-1, L}) \\
-2\quad f_{\Gamma}T(n) \\
-3\quad f(T_{n+1, R})\\
-\end{math}
+\begin{center}
+\begin{tabular}{l l}
+Rekisteri & Tila \\
+\hline
+1 & $f(T_{n-1, L})$ \\
+2 & $f_{\Gamma}(T(n))$ \\
+3 & $f(T_{n+1, R})$ \\
+\end{tabular}
+\end{center}
 $M$:n siirtyessä oikealle $M'$:n rekisterien tulisi siirtyä tilaan
-\begin{math} \\
-1\quad f(T_{n, L}) = f(T_{n-1, L}) \times |\Gamma| + f_{\Gamma}(T(n)) \\
-2\quad f_{\Gamma}T(n+1) \\
-3\quad f(T_{n+2, R}) = \lfloor\dfrac{f(T_{n+1, R})}{|\Gamma|}\rfloor
-\end{math}
+\begin{center}
+\begin{tabular}{l l}
+Rekisteri & Tila \\
+\hline
+1 & $f(T_{n, L}) = f(T_{n-1, L}) \times |\Gamma| + f_{\Gamma}(T(n))$ \\
+2 & $f_{\Gamma}T(n+1)$ \\
+3 & $f(T_{n+2, R}) = \left\lfloor\dfrac{f(T_{n+1, R})}{|\Gamma|}\right\rfloor$ \\
+\end{tabular}
 
+\end{center}
 Rekisterien tilan siirtymä voidaan toteuttaa kertomalla 1:n sisältö $|\Gamma|$:lla ja lisäämällä siihen rekisterin 2 sisältö. Tämän jälkeen jaetaan rekisterin 3 sisältö $|\Gamma|$:lla ja asetetaan jakojäännös rekisteriin 2, ja palataan ohjelman alkuun. Tällä tavoin olemme simuloineet $M$:n nauhan siirtämisen.
 \qedhere
 
@@ -324,7 +341,7 @@ Olkoon $M$ esimerkin 7 mukainen Turingin kone joka tunnistaa kielen $\{a^nb^n | 
 
 $M$:n nauhamerkistö $\Gamma$ sisältää kolme merkkiä. Numeroidaan ne seuraavasti: $f_\Gamma(B) = 0, f_\Gamma(a) = 1, f_\Gamma(b) = 2$. $M$ sisältää viisi eri tilaa, numeroidaan ne seuraavasti: $f_Q(q_0) = 0, f_Q(q_a) = 1, f_Q(q_b) = 2, f_Q(q_r) = 3, f_Q(q_e) = 4$.
 
-Olkoon koneessa 7 rekisteriä:
+Olkoon koneessa $M'$:ssä 7 rekisteriä:
 
 \begin{tabular} [t]{l l}
 $1$ & Vasen puolinauha \\
@@ -335,7 +352,7 @@ $5 - 7$ & Laskurekistereitä \\
 \end{tabular}
 \\
 
-Mikäli suorituksen päätyttyä rekisterissä 4 on arvo 0, $M$ palauttaa arvon tosi, muussa tapauksessa $M$ palauttaa arvon epätosi.
+Suorituksen päätyttyä $M'$ palauttaa tulokseksi arvon tosi jos ja vain jos rekisterissä 4 on oleva arvo kuuluu $M$:n hyväksyvien tilojen joukkoon $F$. Tässä koneessa hyväksyvien tilojen joukko sisältää vain $q_0$:n jonka kokonaislukuesitys on 0.
 
 Seuraava komentolistaus sisältää jonkin verran optimointia toistamisen välttämiseksi, mutta noudattaa pääpiirteissään yllä esitettyä mallia.
 \\
@@ -349,7 +366,7 @@ $\hat{3}$ & $(2, 4, 14)$  & Luettiin merkki b \\
 $\hat{4}$ & $(4, 5, 19)$  & Luettiin merkki B ja oltiin tilassa $q_0$ \\
 $\hat{5}$ & $(4, 6, 21)$  & Luettiin merkki B ja oltiin tilassa $q_a$ \\
 $\hat{6}$ & $(4, 7, 23)$  & Luettiin merkki B ja oltiin tilassa $q_b$ \\
-$\hat{7}$ & $(4, 8, X)$  & Luettiin merkki B ja oltiin tilassa $q_r$ \\
+$\hat{7}$ & $(4, 8, 51)$  & Luettiin merkki B ja oltiin tilassa $q_r$ \\
 $\hat{8}$ & $(4, 9, 23)$  & Luettiin merkki B ja oltiin tilassa $q_e$ \\
 $\hat{9}$ & $(4, 10, 28)$  & Luettiin merkki a ja oltiin tilassa $q_0$ \\
 $\hat{10}$ & $(4, 11, 29)$  & Luettiin merkki a ja oltiin tilassa $q_a$ \\
@@ -361,7 +378,7 @@ $\hat{15}$ & $(4, 16, 35)$  & Luettiin merkki b ja oltiin tilassa $q_a$ \\
 $\hat{16}$ & $(4, 17, 38)$  & Luettiin merkki b ja oltiin tilassa $q_b$ \\
 $\hat{17}$ & $(4, 18, 41)$  & Luettiin merkki b ja oltiin tilassa $q_r$ \\
 $\hat{18}$ & $(4, 19, 23)$  & Luettiin merkki b ja oltiin tilassa $q_e$ \\
-$\hat{19}$ & $\hat(M)$  & Palautetaan tosi \\
+$\hat{19}$ & $\hat{M}$  & Palautetaan tosi \\
 $\hat{20}$ & $(4, 51)$  & Siirrytään tilaan $q_a$, kirjoitetaan B ja siirrytään oikealle\\
 $\hat{21}$ & $(4, 21)$  & Siirrytään tilaan $q_b$, kirjoitetaan B ja siirrytään vasemmalle\\
 $\hat{22}$ & $(4, 73)$  &\\
@@ -369,7 +386,7 @@ $\hat{23}$ & $(4, 24)$  & Siirrytään tilaan $q_e$ ja lopetetaan suoritus\\
 $\hat{24}$ & $(4, 25)$  &\\
 $\hat{25}$ & $(4, 26)$  &\\
 $\hat{26}$ & $(4, 27)$  &\\
-$\hat{27}$ & $\hat(M)$  &\\
+$\hat{27}$ & $\hat{M}$  &\\
 $\hat{28}$ & $(4, 51)$  & Siirrytään tilaan $q_a$, kirjoitetaan B ja siirrytään oikealle\\
 $\hat{29}$ & $(4, 30)$  & Siirrytään tilaan $q_a$, kirjoitetaan a ja siirrytään oikealle\\
 $\hat{30}$ & $(2, 51)$  & \\
@@ -411,7 +428,7 @@ $\hat{61}$ & $(6, 60)$  &\\
 $\hat{62}$ & $(2, 63, 64)$  & Lisätään rekisterin 2 arvo rekisteriin 1\\
 $\hat{63}$ & $(1, 62)$  &\\
 $\hat{64}$ & $(6, 64, 65)$  & Tyhjennetään rekisteri 6\\
-$\hat{65}$ & $(3, 66, 69)$  & Jaetaan rekisteri 3 kolmella, asetetaan jakojäännös rekisteriin 2\\
+$\hat{65}$ & $(3, 66, 71)$  & Jaetaan rekisteri 3 kolmella, asetetaan jakojäännös rekisteriin 2\\
 $\hat{66}$ & $(3, 67, 70)$  & \\
 $\hat{67}$ & $(3, 68, 69)$  & \\
 $\hat{68}$ & $(5, 65)$  & \\
@@ -420,7 +437,7 @@ $\hat{68}$ & $(5, 65)$  & \\
 & & Selitys\\
 \hline
 $\hat{69}$ & $(2, 70)$  & Jakojäännös 2 \\
-$\hat{70}$ & $(2, 70)$  & Jakojäännös 1 \\
+$\hat{70}$ & $(2, 71)$  & Jakojäännös 1 \\
 $\hat{71}$ & $(5, 72, 1)$  & Siirrä rekisterin 5 sisältö rekisteriin 3, paluu alkuun \\
 $\hat{72}$ & $(3, 71)$  & \\
 $\hat{73}$ & $(5, 74)$  & Siirrytään vasemmalle\\
@@ -437,12 +454,12 @@ $\hat{83}$ & $(6, 82)$  &\\
 $\hat{84}$ & $(2, 85, 86)$  & Lisätään rekisterin 2 arvo rekisteriin 3\\
 $\hat{85}$ & $(1, 84)$  &\\
 $\hat{86}$ & $(6, 86, 87)$  & Tyhjennetään rekisteri 6\\
-$\hat{87}$ & $(3, 88, 91)$  & Jaetaan rekisteri 1 kolmella, asetetaan jakojäännös rekisteriin 2\\
+$\hat{87}$ & $(3, 88, 93)$  & Jaetaan rekisteri 1 kolmella, asetetaan jakojäännös rekisteriin 2\\
 $\hat{88}$ & $(3, 89, 92)$  & \\
 $\hat{89}$ & $(3, 90, 91)$  & \\
 $\hat{90}$ & $(5, 87)$  & \\
 $\hat{91}$ & $(2, 92)$  & Jakojäännös 2 \\
-$\hat{92}$ & $(2, 92)$  & Jakojäännös 1 \\
+$\hat{92}$ & $(2, 93)$  & Jakojäännös 1 \\
 $\hat{93}$ & $(5, 94, 1)$  & Siirrä rekisterin 5 sisältö rekisteriin 1, paluu alkuun \\
 $\hat{94}$ & $(3, 93)$  & \\
 \end{tabular}
