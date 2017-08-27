@@ -326,18 +326,20 @@ $M$:n nauhamerkistö $\Gamma$ sisältää kolme merkkiä. Numeroidaan ne seuraav
 
 Olkoon koneessa 7 rekisteriä:
 
-\begin{math} \\
-1\quad \text{Vasen puolinauha} \\
-2\quad \text{Lukupään kohdalla oleva merkki}\\
-3\quad \text{Oikea puolinauha}\\
-4\quad \text{Tila}\\
-5-7\quad \text{Laskurekistereitä}\\
-\end{math}
+\begin{tabular} [t]{l l}
+$1$ & Vasen puolinauha \\
+$2$ & Lukupään kohdalla oleva merkki \\
+$3$ & Oikea puolinauha \\
+$4$ & Tila \\
+$5 - 7$ & Laskurekistereitä \\
+\end{tabular}
+\\
 
 Mikäli suorituksen päätyttyä rekisterissä 4 on arvo 0, $M$ palauttaa arvon tosi, muussa tapauksessa $M$ palauttaa arvon epätosi.
 
 Seuraava komentolistaus sisältää jonkin verran optimointia toistamisen välttämiseksi, mutta noudattaa pääpiirteissään yllä esitettyä mallia.
 \\
+\begin{center}
 \begin{tabular}[t]{r|r|l}
 & & Selitys\\
 \hline
@@ -444,7 +446,7 @@ $\hat{92}$ & $(2, 92)$  & Jakojäännös 1 \\
 $\hat{93}$ & $(5, 94, 1)$  & Siirrä rekisterin 5 sisältö rekisteriin 1, paluu alkuun \\
 $\hat{94}$ & $(3, 93)$  & \\
 \end{tabular}
-
+\end{center}
 
 \end{example}
 
