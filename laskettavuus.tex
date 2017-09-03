@@ -46,20 +46,13 @@ Algoritmilla tarkoitetaan äärellistä luetteloa ohjeita tai komentoja, joita n
 
 Algoritmin komentokannan rajoittamisesta on etua. Täysin vapaamuotoisia algoritmeja on vaikea tutkia; algoritmin oikeellisuus on vaikea todistaa täsmällisesti, algoritmin tulos voi vaihdella komentojen tulkinnan mukaan, ja kahden algoritmin vertailu on lähes mahdotonta. Muodollisen määrittelyn kautta päästään eroon monista epävarmuuksista. Komennot ovat yksiselitteisiä, ja kahden algoritmin suoritusaikaa voidaan verrata laskemalla suoritettujen komentojen lukumäärä. Algoritmin oikeellisuus on usein helpompi todistaa ja joskus voidaan osoittaa, että ratkaisualgoritmia ei ole olemassa tämän komentokannan puitteissa.
 
-Komentokannan käsite on vahvasti sidoksissa siihen, millainen algoritmin suorittajan ajatellaan olevan. Vapaamuotoisen algoritmin suorittajan ajatellaan olevan ihminen. Muissa tapauksissa algoritmin suorittaja on jollakin tavalla määritelty formaalinen kone. Formaaleilla koneilla ei ole kaikenkattavaa määritelmää, vaan jokainen määritellään eri tavoin. Formaalista koneesta käytetään tässä merkintää $M : S \rightarrow R$, missä $S$ on syöte ja $R$ on algoritmin tulos. On tärkeä huomata että tässä $M$ ei ole funktio $S \rightarrow R$, sillä formaalinen kone ei välttämättä koskaan lopeta suoritusta annetulla syötteellä. Kone $M$ voidaan täydentää funktioksi $S \rightarrow R \bigcup \{ \dot{\infty} \}$, missä $\dot{\infty} \notin R$ tarkoittaa, että $M$ ei pysähdy äärellisessa ajassa.
+Komentokannan käsite on vahvasti sidoksissa siihen, millainen algoritmin suorittajan ajatellaan olevan. Vapaamuotoisen algoritmin suorittajan ajatellaan olevan ihminen. Muissa tapauksissa algoritmin suorittaja on jollakin tavalla määritelty formaalinen kone. Formaaleilla koneilla ei ole kaikenkattavaa määritelmää, vaan jokainen määritellään eri tavoin. Formaalista koneesta käytetään tässä merkintää $M : S \rightarrow R$, missä $S$ on syöte ja $R$ on algoritmin tulos. On tärkeä huomata että tässä $M$ ei ole funktio $S \rightarrow R$, sillä formaalinen kone ei välttämättä koskaan lopeta suoritusta annetulla syötteellä. Kone $M$ voidaan täydentää funktioksi $S \rightarrow R \bigcup \{ \dot{\infty} \}$, missä $\dot{\infty} \notin R$ tarkoittaa, että $M$ ei koskaan lopeta suoritusta.
 
 Tietyllä tavalla määriteltyjen formaalien koneiden avaruudesta käytetään tässä merkintää $\hat{M}$.
 
 
 \section{Laskettavuus}
-Eräs algoritmitutkimuksen peruskysymys on selvittää, mitkä ongelmat ovat ratkaistavissa algoritmisesti. Tämä vaatii ensin muodollisen määritelmän ongelmalle ja sen ratkaisulle.
-
-\begin{mydef}
-\emph{Ongelma} on kuvaus $P : S \rightarrow R$ missä S on ongelman syöteavaruus ja R odotettujen tulosten avaruus.
-\end{mydef}
-\begin{mydef}
-Kone $M$ \emph{ratkaisee} ongelman $ \Leftrightarrow \forall s \in S : M(s) = P(s)$
-\end{mydef}
+Eräs algoritmitutkimuksen peruskysymys on selvittää, mitkä ongelmat ovat ratkaistavissa algoritmisesti. Ongelmalla tarkoitetaan tässä funktiota $P: S \rightarrow R$, jonka arvoja halutaan laskea jollakin algoritmilla. Koneen $M$ sanotaan ratkaisevan ongelman $P$ mikäli $\forall s \in S : M(s) = P(s)$. Tyypillisiä syöteavaruuksia $S$ ovat äärellisien merkkijononen avaruus $\Sigma^*$ tai $\mathbb{N}^n$. Tyypilliä tulosavaruuksia $R$ ovat $\{\text{'kyllä'}, \text{'ei'}\}$, $\mathbb{N}$ tai $\Sigma^*$
 
 Ongelman $P$ sanotaan olevan ratkaistavissa konetyypillä $\hat{M}$, mikäli on olemassa sellainen $M \in \hat{M}$ joka ratkaisee $P$:n. Mikäli ongelma $P$ on ratkaistavissa jollakin konetyypillä, kutsutaan sitä laskettavissa olevaksi. On tärkeää huomata, että ongelma on ratkaistavissa mikäli voidaan osoittaa, että sille on olemassa ratkaisu, vaikka ratkaisua ei suoraan tunnettaisikaan. Kaikille ongelmille ei luonnollisesti löydy ratkaisualgoritmia.
 
