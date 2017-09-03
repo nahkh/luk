@@ -12,12 +12,22 @@ class Tape:
         else:
             self.content[key] = value
     def __str__(self):
-        left = min(self.content.keys()) - 1
-        right = max(self.content.keys()) + 1
+        if len(self.content) == 0:
+            left = -1
+            right = 0
+        else:
+            left = min(self.content.keys()) - 1
+            right = max(self.content.keys()) + 1
+        
         stringRep = ''
-        for i in range(left, right - left):
+        for i in range(left, right + 1):
             stringRep += self[i]
         return stringRep
+    def leftPosition(self):
+        if len(self.content) == 0:
+            return -1
+        else:
+            return min(self.content.keys()) - 1
 
 class TuringMachine:
     def __init__(self, filename):
@@ -42,7 +52,12 @@ class TuringMachine:
 
     def executeStep(self):
         if self.verbose:
-            print self.tape
+            leftPos = self.tape.leftPosition()
+            firstOffset = leftPos - self.position if leftPos > self.position else 0
+            secondOffset = self.position - leftPos if leftPos < self.position else 0
+            print ('B' * firstOffset) + self.tape.__str__()
+            print (' ' * secondOffset) + '^'
+            print 'In state %s' % self.state
         if self.halted:
             return self.state in self.acceptingStates
         self.stepCount += 1
@@ -50,7 +65,11 @@ class TuringMachine:
         instruction = self.instructions[key]
         if instruction == 'halt':
             self.halted = True
+            if self.verbose:
+                print 'Halting execution'
             return self.state in self.acceptingStates
+        if self.verbose:
+             print 'Moving to state %s, writing %s, moving %d' % instruction
         self.state = instruction[0]
         self.tape[self.position] = instruction[1]
         self.position += instruction[2]
@@ -61,7 +80,7 @@ class TuringMachine:
         return last
 
 if __name__=='__main__':
-    t = Tape('aaaaaaaaaabbbbbbbbbb')
+    t = Tape('aabb')
     M = TuringMachine('example 5.txt')
     M.start(t, True)
     print(M.execute())
