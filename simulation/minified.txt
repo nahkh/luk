@@ -1,0 +1,81 @@
+1 (2, 2, 4) Luettiin merkki B
+2 (2, 3, 9) Luettiin merkki a
+3 (2, 4, 14) Luettiin merkki b
+4 (4, 5, 81) Luettiin merkki B ja oltiin tilassa q_0
+5 (4, 6, 20) Luettiin merkki B ja oltiin tilassa q_a
+6 (4, 7, 22) Luettiin merkki B ja oltiin tilassa q_b
+7 (4, 8, 49) Luettiin merkki B ja oltiin tilassa q_r
+8 (4, 9, 22) Luettiin merkki B ja oltiin tilassa q_e
+9 (4, 10, 26) Luettiin merkki a ja oltiin tilassa q_0
+10 (4, 11, 27) Luettiin merkki a ja oltiin tilassa q_a
+11 (4, 12, 22) Luettiin merkki a ja oltiin tilassa q_b
+12 (4, 13, 29) Luettiin merkki a ja oltiin tilassa q_r
+13 (4, 14, 22) Luettiin merkki a ja oltiin tilassa q_e
+14 (4, 15, 22) Luettiin merkki b ja oltiin tilassa q_0
+15 (4, 16, 33) Luettiin merkki b ja oltiin tilassa q_a
+16 (4, 17, 36) Luettiin merkki b ja oltiin tilassa q_b
+17 (4, 18, 39) Luettiin merkki b ja oltiin tilassa q_r
+18 (4, 81, 22) Luettiin merkki b ja oltiin tilassa q_e
+19 (4, 49) Siirrytään tilaan q_a, kirjoitetaan B ja siirrytään oikealle
+20 (4, 21) Siirrytään tilaan q_b, kirjoitetaan B ja siirrytään vasemmalle
+21 (4, 65) 
+22 (4, 23) Siirrytään tilaan q_e ja lopetetaan suoritus
+23 (4, 24) 
+24 (4, 25) 
+25 (4, 81) 
+26 (4, 49) Siirrytään tilaan q_a, kirjoitetaan B ja siirrytään oikealle
+27 (4, 28) Pysytään tilassa q_a, kirjoitetaan a ja siirrytään oikealle
+28 (2, 49) 
+29 (4, 30) Pysytään tilassa q_r, kirjoitetaan a ja siirrytään vasemmalle
+30 (4, 31) 
+31 (4, 32) 
+32 (2, 65) 
+33 (4, 34) Pysytään tilassa q_a, kirjoitetaan b ja siirrytään oikealle
+34 (2, 35) 
+35 (2, 49) 
+36 (4, 37) Siirrytään tilaan q_r, kirjoitetaan B ja siirrytään vasemmalle
+37 (4, 38) 
+38 (4, 65) 
+39 (4, 40) Pysytään tilassa q_r, kirjoitetaan b ja siirrytään vasemmalle
+40 (4, 41) 
+41 (4, 42) 
+42 (2, 43) 
+43 (2, 65) 
+44 (4, 40) Pysytään tilassa q_r, kirjoitetaan b ja siirrytään vasemmalle
+45 (4, 41) 
+46 (4, 42) 
+47 (2, 43) 
+48 (2, 65) 
+49 (1, 50, 51) Siirrytään oikealle. Siirretään rekisterin 1 arvo rekisteriin 5
+50 (5, 49) 
+51 (5, 52, 55) lisätään rekisterin 5 sisältö kolme kertaa rekisteriin 1
+52 (1, 53) 
+53 (1, 54) 
+54 (1, 51) 
+55 (2, 56, 57) Lisätään rekisterin 2 arvo rekisteriin 1
+56 (1, 55) 
+57 (3, 58, 63) Jaetaan rekisteri 3 kolmella, asetetaan jakojäännös rekisteriin 2
+58 (3, 59, 62) 
+59 (3, 60, 61) 
+60 (5, 57) 
+61 (2, 62) Jakojäännös 2
+62 (2, 63) Jakojäännös 1
+63 (5, 64, 1) Siirrä rekisterin 5 sisältö rekisteriin 3, paluu alkuun
+64 (3, 63) 
+65 (3, 66, 67) Siirrytään vasemmalle. Siirretään rekisterin 3 arvo rekisteriin 5
+66 (5, 65) 
+67 (5, 68, 71) Lisätään rekisterin 5 arvo rekisteriin 3 kolme kertaa
+68 (3, 69) 
+69 (3, 70) 
+70 (3, 67) 
+71 (2, 72, 73) Lisätään rekisterin 2 arvo rekisteriin 3
+72 (3, 71) 
+73 (1, 74, 79) Jaetaan rekisteri 1 kolmella, asetetaan jakojäännös rekisteriin 2
+74 (1, 75, 78) 
+75 (1, 76, 77) 
+76 (5, 73) 
+77 (2, 78) Jakojäännös 2
+78 (2, 79) Jakojäännös 1
+79 (5, 80, 1) Siirrä rekisterin 5 sisältö rekisteriin 1, paluu alkuun
+80 (1, 79) 
+81 halt

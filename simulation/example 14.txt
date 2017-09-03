@@ -24,9 +24,9 @@
 25 (4, 26)
 26 (4, 95)
 28 (4, 51) Siirryt‰‰n tilaan q_a, kirjoitetaan B ja siirryt‰‰n oikealle
-29 (4, 30) Siirryt‰‰n tilaan q_a, kirjoitetaan a ja siirryt‰‰n oikealle
+29 (4, 30) Pysyt‰‰n tilassa q_a, kirjoitetaan a ja siirryt‰‰n oikealle
 30 (2, 51) 
-31 (4, 32) Siirryt‰‰n tilaan q_r, kirjoitetaan a ja siirryt‰‰n vasemmalle
+31 (4, 32) Pysyt‰‰n tilassa q_r, kirjoitetaan a ja siirryt‰‰n vasemmalle
 32 (4, 33)
 33 (4, 34)
 34 (2, 73) 
@@ -36,12 +36,12 @@
 38 (4, 39) Siirryt‰‰n tilaan q_r, kirjoitetaan B ja siirryt‰‰n vasemmalle
 39 (4, 40) 
 40 (4, 73) 
-41 (4, 42) Siirryt‰‰n tilaan q_r, kirjoitetaan b ja siirryt‰‰n vasemmalle
+41 (4, 42) Pysyt‰‰n tilassa q_r, kirjoitetaan b ja siirryt‰‰n vasemmalle
 42 (4, 43)
 43 (4, 44)
 44 (2, 45) 
 45 (2, 73) 
-46 (4, 42) Siirryt‰‰n tilaan q_r, kirjoitetaan b ja siirryt‰‰n vasemmalle
+46 (4, 42) Pysyt‰‰n tilassa q_r, kirjoitetaan b ja siirryt‰‰n vasemmalle
 47 (4, 43)
 48 (4, 44)
 49 (2, 45) 

@@ -1,0 +1,81 @@
+$\hat{1}$ & (2, 2, 4) & Luettiin merkki B \\
+$\hat{2}$ & (2, 3, 9) & Luettiin merkki a \\
+$\hat{3}$ & (2, 4, 14) & Luettiin merkki b \\
+$\hat{4}$ & (4, 5, 81) & Luettiin merkki $B$ ja oltiin tilassa $q_0$ \\
+$\hat{5}$ & (4, 6, 20) & Luettiin merkki $B$ ja oltiin tilassa $q_a$ \\
+$\hat{6}$ & (4, 7, 22) & Luettiin merkki $B$ ja oltiin tilassa $q_b$ \\
+$\hat{7}$ & (4, 8, 49) & Luettiin merkki $B$ ja oltiin tilassa $q_r$ \\
+$\hat{8}$ & (4, 9, 22) & Luettiin merkki $B$ ja oltiin tilassa $q_e$ \\
+$\hat{9}$ & (4, 10, 26) & Luettiin merkki $a$ ja oltiin tilassa $q_0$ \\
+$\hat{10}$ & (4, 11, 27) & Luettiin merkki $a$ ja oltiin tilassa $q_a$ \\
+$\hat{11}$ & (4, 12, 22) & Luettiin merkki $a$ ja oltiin tilassa $q_b$ \\
+$\hat{12}$ & (4, 13, 29) & Luettiin merkki $a$ ja oltiin tilassa $q_r$ \\
+$\hat{13}$ & (4, 14, 22) & Luettiin merkki $a$ ja oltiin tilassa $q_e$ \\
+$\hat{14}$ & (4, 15, 22) & Luettiin merkki $b$ ja oltiin tilassa $q_0$ \\
+$\hat{15}$ & (4, 16, 33) & Luettiin merkki $b$ ja oltiin tilassa $q_a$ \\
+$\hat{16}$ & (4, 17, 36) & Luettiin merkki $b$ ja oltiin tilassa $q_b$ \\
+$\hat{17}$ & (4, 18, 39) & Luettiin merkki $b$ ja oltiin tilassa $q_r$ \\
+$\hat{18}$ & (4, 81, 22) & Luettiin merkki $b$ ja oltiin tilassa $q_e$ \\
+$\hat{19}$ & (4, 49) & Siirrytään tilaan $q_a$, kirjoitetaan $B$ ja siirrytään oikealle \\
+$\hat{20}$ & (4, 21) & Siirrytään tilaan $q_b$, kirjoitetaan $B$ ja siirrytään vasemmalle \\
+$\hat{21}$ & (4, 65) &  \\
+$\hat{22}$ & (4, 23) & Siirrytään tilaan $q_e$ ja lopetetaan suoritus \\
+$\hat{23}$ & (4, 24) &  \\
+$\hat{24}$ & (4, 25) &  \\
+$\hat{25}$ & (4, 81) &  \\
+$\hat{26}$ & (4, 49) & Siirrytään tilaan $q_a$, kirjoitetaan $B$ ja siirrytään oikealle \\
+$\hat{27}$ & (4, 28) & Pysytään tilassa $q_a$, kirjoitetaan $a$ ja siirrytään oikealle \\
+$\hat{28}$ & (2, 49) &  \\
+$\hat{29}$ & (4, 30) & Pysytään tilassa $q_r$, kirjoitetaan $a$ ja siirrytään vasemmalle \\
+$\hat{30}$ & (4, 31) &  \\
+$\hat{31}$ & (4, 32) &  \\
+$\hat{32}$ & (2, 65) &  \\
+$\hat{33}$ & (4, 34) & Pysytään tilassa $q_a$, kirjoitetaan $b$ ja siirrytään oikealle \\
+$\hat{34}$ & (2, 35) &  \\
+$\hat{35}$ & (2, 49) &  \\
+$\hat{36}$ & (4, 37) & Siirrytään tilaan $q_r$, kirjoitetaan $B$ ja siirrytään vasemmalle \\
+$\hat{37}$ & (4, 38) &  \\
+$\hat{38}$ & (4, 65) &  \\
+$\hat{39}$ & (4, 40) & Pysytään tilassa $q_r$, kirjoitetaan $b$ ja siirrytään vasemmalle \\
+$\hat{40}$ & (4, 41) &  \\
+$\hat{41}$ & (4, 42) &  \\
+$\hat{42}$ & (2, 43) &  \\
+$\hat{43}$ & (2, 65) &  \\
+$\hat{44}$ & (4, 40) & Pysytään tilassa $q_r$, kirjoitetaan $b$ ja siirrytään vasemmalle \\
+$\hat{45}$ & (4, 41) &  \\
+$\hat{46}$ & (4, 42) &  \\
+$\hat{47}$ & (2, 43) &  \\
+$\hat{48}$ & (2, 65) &  \\
+$\hat{49}$ & (1, 50, 51) & Siirrytään oikealle. Siirretään rekisterin 1 arvo rekisteriin 5 \\
+$\hat{50}$ & (5, 49) &  \\
+$\hat{51}$ & (5, 52, 55) & lisätään rekisterin 5 sisältö kolme kertaa rekisteriin 1 \\
+$\hat{52}$ & (1, 53) &  \\
+$\hat{53}$ & (1, 54) &  \\
+$\hat{54}$ & (1, 51) &  \\
+$\hat{55}$ & (2, 56, 57) & Lisätään rekisterin 2 arvo rekisteriin 1 \\
+$\hat{56}$ & (1, 55) &  \\
+$\hat{57}$ & (3, 58, 63) & Jaetaan rekisteri 3 kolmella, asetetaan jakojäännös rekisteriin 2 \\
+$\hat{58}$ & (3, 59, 62) &  \\
+$\hat{59}$ & (3, 60, 61) &  \\
+$\hat{60}$ & (5, 57) &  \\
+$\hat{61}$ & (2, 62) & Jakojäännös 2 \\
+$\hat{62}$ & (2, 63) & Jakojäännös 1 \\
+$\hat{63}$ & (5, 64, 1) & Siirrä rekisterin 5 sisältö rekisteriin 3, paluu alkuun \\
+$\hat{64}$ & (3, 63) &  \\
+$\hat{65}$ & (3, 66, 67) & Siirrytään vasemmalle. Siirretään rekisterin 3 arvo rekisteriin 5 \\
+$\hat{66}$ & (5, 65) &  \\
+$\hat{67}$ & (5, 68, 71) & Lisätään rekisterin 5 arvo rekisteriin 3 kolme kertaa \\
+$\hat{68}$ & (3, 69) &  \\
+$\hat{69}$ & (3, 70) &  \\
+$\hat{70}$ & (3, 67) &  \\
+$\hat{71}$ & (2, 72, 73) & Lisätään rekisterin 2 arvo rekisteriin 3 \\
+$\hat{72}$ & (3, 71) &  \\
+$\hat{73}$ & (1, 74, 79) & Jaetaan rekisteri 1 kolmella, asetetaan jakojäännös rekisteriin 2 \\
+$\hat{74}$ & (1, 75, 78) &  \\
+$\hat{75}$ & (1, 76, 77) &  \\
+$\hat{76}$ & (5, 73) &  \\
+$\hat{77}$ & (2, 78) & Jakojäännös 2 \\
+$\hat{78}$ & (2, 79) & Jakojäännös 1 \\
+$\hat{79}$ & (5, 80, 1) & Siirrä rekisterin 5 sisältö rekisteriin 1, paluu alkuun \\
+$\hat{80}$ & (1, 79) &  \\
+$\hat{81}$ & halt & \\

@@ -27,7 +27,7 @@
 
 \title{Muodolliset koneet ja laskettavuus}
 \author{Juuso Valli}
-\date{13. 12. 2016}
+\date{3. 9. 2017}
 
 \maketitle
 
@@ -90,6 +90,7 @@ Automaatti on aina jossakin tilassa $q \in Q$, alkutilanteessa $q = q_0$. Se luk
 Tällä tavoin määritelty muodollinen kone on monilta ominaisuuksiltaan käyttökelpoinen; sen suoritus kestää aina lineaarisen ajan, ja sen suorittamiseen tarvittavan muistin määrä on vakio.
 
 \begin{example}
+\label{ex:anbm}
 $M = (\{q_0, q_1, q_2\}, \{a, b\}, \delta, q_0, \{q_0, q_1\})$ jossa siirtymäfunktio $\delta$ kuvataan seuraavalla graafilla:
 
 \begin{figure}[H]
@@ -151,7 +152,7 @@ Olkoon sana $w \in \Sigma^*$. Jos $w \in L(M)$, niin automaatti selvästi palaut
 \end{teor}
 
 
-Äärellisillä automaateilla on kuitenkin monia rajoitteita. On runsaasti esimerkkejä ongelmista, jotka intuitiivisesti olisivat ratkaistavissa jollaking algoritmilla, mutta joita ei voi laskea äärellisen automaatin avulla. Tällaisia ongelmia ovat esimerkiksi 'Onko annettu suljelauseke oikein muodostettu?' tai 'Onko merkkijono muotoa $a^nb^n$?'. Onkin selvää, että äärelliset automaatit eivät ole riittävän yleisiä toteuttaakseen kaikkia algoritmeja.
+Äärellisillä automaateilla on kuitenkin monia rajoitteita. On runsaasti esimerkkejä ongelmista, jotka intuitiivisesti olisivat ratkaistavissa jollakin algoritmilla, mutta joita ei voi laskea äärellisen automaatin avulla. Tällaisia ongelmia ovat esimerkiksi 'Onko annettu suljelauseke oikein muodostettu?' tai 'Onko merkkijono muotoa $a^nb^n$?'. Onkin selvää, että äärelliset automaatit eivät ole riittävän yleisiä toteuttaakseen kaikkia algoritmeja.
 
 \begin{teor}
 Ei ole olemassa äärellistä automaattia $M$, joka tunnistaa kielen $L = \{a^nb^n | n \geq 0\}$.
@@ -164,12 +165,17 @@ Sovelletaan tätä nyt kielen $L$ tapaukseen. Olkoon $w = a^mb^m, m > n$. Täll�
 \end{teor}
 
 \section{Rekisterikoneet}
-Shepherdsonin ja Sturgisin rekisterikoneet ovat rakenteellisesti hyvin yksinkertaisia. Koneella on $R$ rekisteriä, joista kukin muistaa yhden luonnollisen luvun. Rekisterin $n$ arvoon viitataan merkinnällä $\bar{n}$. Suoritettava algoritmi esitetään numeroituna luettelona, joka koostuu hyvin yksinkertaisista komennoista. Merkitään näitä komentoja $\hat{1}$, $\hat{2}$, \dots , $\hat{M}$. Algoritmin alkuarvot on tallennettu rekistereihin. Rekisterikone tunnistaa kolme erilaista komentoa: $(n,j)$, $(n,j,k)$ sekä lopetuskomennon $\hat{M}$. Kahden ensimmäisen komennon merkitykset ovat:
+Shepherdsonin ja Sturgisin rekisterikoneet ovat rakenteellisesti hyvin yksinkertaisia. Koneella on $R$ rekisteriä, joista kukin sisältää yhden luonnollisen luvun. Suorituksen alussa rekistereissä ovat luonnolliset luvut $x_1, x_2, ..., x_m, m \leq R$, muualla nolla. Onnistuneen laskun lopussa tulos $y$ on rekisterissä 1 ja muut rekisterit ovat nollia. Kone laskee siis funktion $f:\mathbb{N}^m \rightarrow \mathbb{N}$ jossa $f(x_1, ... , x_m) = y$.
+
+Rekisterin $n$ arvoon viitataan merkinnällä $\bar{n}$. Suoritettava algoritmi esitetään numeroituna luettelona, joka koostuu hyvin yksinkertaisista komennoista. Merkitään näitä komentoja $\hat{1}$, $\hat{2}$, \dots , $\hat{M}$. 
+
+
+Rekisterikone tunnistaa kolme erilaista komentoa: $(n,j)$, $(n,j,k)$ sekä lopetuskomennon $\hat{M}$. Kahden ensimmäisen komennon merkitykset ovat:
 
 \begin{tabular}{c l}
 $(n, j)$ & Lisää 1 rekisteriin n ja siirry komentoon j. \\
 $(n, j, k)$ & Jos $\bar{n} > 0$, vähennä 1 rekisteristä n ja siirry komentoon j; \\
-& muutoin siirry komentoon k.\\
+& muulloin siirry komentoon k.\\
 \end{tabular}
 
 
@@ -201,7 +207,7 @@ Olkoon rekisterien arvot alkutilanteessa $(3, 2)$. Ohjelman suoritus etenisi seu
 
 
 \section{Turingin koneet}
-Turing kone on ensimmäinen tunnettu muodollinen kone. Alan Turing esitteli sen vuonna 1937, kun käytti sitä apuvälineenä ratkaistakseen David Hilbertin vuonna 1928 esittämän päätösongelman.
+Turingin kone on ensimmäinen tunnettu muodollinen kone. Alan Turing esitteli sen vuonna 1937, kun käytti sitä apuvälineenä ratkaistakseen David Hilbertin vuonna 1928 esittämän päätösongelman.
 Turingin koneet poikkeavat rakenteellisesti rekisterikoneista huomattavasti ja muistuttavat enemmänkin äärellisiä tilakoneita. Muodollisesti määriteltynä Turingin koneella on seitsemän komponenttia $(Q, \Sigma, \Gamma, \delta, q_0, B, F)$, jossa
 
 \begin{itemize}
@@ -219,9 +225,11 @@ Turingin koneet toimivat kuten äärelliset automaatit lukuun ottamatta kahta me
 
 Alkutilanteessa kone aloittaa syötteen vasemmasta reunasta, tilassa $q_0 \in Q$. Kone lukee yhden merkin ja päättää sen perusteella mihin tilaan siirtyä, minkä merkin kirjoittaa nauhalle luetun merkin tilalle ja siirtyäkö oikealle vai vasemmalle. Suoritus päättyy vasta, kun siirtymäfunktio $\delta$ palauttaa arvon $\emptyset$. Sen jälkeen verrataan senhetkistä tilaa joukkoon $F$ kuten äärellisten automaattien tapauksessa.
 
+Turingin konetta voi käyttää kielten tunnistamiseen kuten esimerkissä \ref{ex:anbn}, mutta sillä voi myös laskea funktion. Syöte $x_1, ..., x_m$ koodataan nauhalle vaikka muodossa $B 0^{x_1} B 0^{x_2} B ... B 0^{x_m} B$. Onnistuneen laskun lopussa tulos $y$ on nauhalla muodossa $B 0^y B$. Turinginkin kone laskee siis tämän funktion $f:\mathbb{N}^m \rightarrow\mathbb{N}$, jossa $f(x_1, ..., x_m) = y$.
 
 %Esimerkki Turingin koneen toiminnasta, ehkä määritellään kone joka tekee jotain, annetaan parin askeleen esimerkki
 \begin{example}
+\label{ex:anbn}
 Olkoon $M$ Turingin kone siten, että\\$M = (\{q_0, q_a, q_b, q_r, q_e\}, \{a, b\}, \{a, b, B\}, \delta, q_0, B, \{q_0\})$ missä $\delta$ toimii seuraavan taulukon mukaisesti:
 
 \begin{tabular}{r | l l l}
@@ -253,12 +261,14 @@ Osoitetaan ensin, että annetun Turingin koneen $M$ toimintaa voidaan simuloida 
 Koska Turingin koneet ja rekisterikoneet ovat rakenteellisesti erilaisia, otetaan käyttöön hieman aputermistöä.
 
 \begin{mydef}
-Valitaan bijektio $f_\Gamma : \Gamma \rightarrow \mathbb{N}_{<|\Gamma|}$ siten että $f(B) = 0$. Merkin $\gamma \in \Gamma$ \emph{kokonaislukuesitys} on $f_\Gamma(\gamma)$.
+\label{def:fgamma}
+Valitaan bijektio $f_\Gamma : \Gamma \rightarrow \{0, 1, 2, \ldots, |\Gamma| - 1\}$ siten että $f(B) = 0$. Merkin $\gamma \in \Gamma$ \emph{kokonaislukuesitys} on $f_\Gamma(\gamma)$.
 \end{mydef}
 Kuvauksen $f$ valinnalla ei muuten ole väliä, kunhan samassa yhteydessä käytetään aina samaa kuvausta. Mikäli kuvausta ei erikseen määritellä, oletetaan yleensä sen kuvaavan aakkoston positiivisiin kokonaislukuihin samassa järjestyksessä missä merkit lueteltiin.
 
 \begin{mydef}
-Valitaan bijektio $f_Q : Q \rightarrow \mathbb{N}_{<|Q|}$. Tilan $q \in Q$ \emph{kokonaislukuesitys} on $f_Q(q)$.
+\label{def:fq}
+Valitaan bijektio $f_Q : Q \rightarrow \{0, 1, 2, \ldots, |Q| - 1\}$. Tilan $q \in Q$ \emph{kokonaislukuesitys} on $f_Q(q)$.
 \end{mydef}
 
 \begin{mydef}
@@ -266,42 +276,51 @@ Valitaan bijektio $f_Q : Q \rightarrow \mathbb{N}_{<|Q|}$. Tilan $q \in Q$ \emph
 \end{mydef}
 
 \begin{mydef}
-Puolinauhan T \emph{kokonaislukuesitys} on 
+Puolinauhan $T_{n, R | L}$ \emph{kokonaislukuesitys} on 
 \begin{center}
 \begin{math}
-f(T) = \Sigma_{i=0}^{\infty} f_\Gamma(T(i)) \times |\Gamma|^i
+f_T(T_{n, R | L}) = \Sigma_{i=0}^{\infty} f_\Gamma(T_{n, R | L}(i)) \times |\Gamma|^i
 \end{math}
 \end{center}
 \end{mydef}
 
 \begin{example}
-Olkoon $\Sigma = {B, a, b, c}$ ja $T_{0, R} = abac$. $T$:n kokonaislukuesitys olisi tässä tapauksessa $f(a) + f(b) \times 4 + f(a) \times 4^2 + f(c) \times 4^3= 1 + 2 \times 4 + 1 \times 16 + 3 \times 64 = 217$.
+Olkoon $\Gamma = \{B, a, b, c\}$ ja $T_{0, R} = abac$. $T$:n kokonaislukuesitys olisi tässä tapauksessa $f_\Gamma(a) + f_\Gamma(b) \times 4 + f_\Gamma(a) \times 4^2 + f_\Gamma(c) \times 4^3= 1 + 2 \times 4 + 1 \times 16 + 3 \times 64 = 217$.
 \end{example}
 
-Helposti nähdään että $T_{i,R} = T_{i+1,R} \times |\Gamma| + T(i)$ ja $T_{i,L} = T_{i-1,L} \times |\Gamma| + T(i)$.
+Seuraavat identiteetit seuraavat suoraan puolinauhan kokonaislukuesityksen määritelmästä:
+\begin{center}
+\begin{align*}
+f_T(T_{i,R}) =& f_T(T_{i+1,R}) \times |\Gamma| + f_\Gamma(T(i))\\
+f_T(T_{i,R}) =& \left\lfloor\dfrac{f_T(T_{i-1, R})}{|\Gamma|}\right\rfloor \\
+f_T(T_{i,L}) =& f(T_{i-1,L}) \times |\Gamma| + f_\Gamma(T(i)) \\
+f_T(T_{i,L}) =& \left\lfloor\dfrac{f_T(T_{i+1, L})}{|\Gamma|}\right\rfloor \\
+\end{align*}
+\end{center}
 
 
 \begin{teor}
-Olkoon $f$ k:n muuttujan funktio joka on ratkaistavissa Turingin koneella. Funktio $f$ on ratkaistavissa rekisterikoneella.
+\label{teor:turreg}
+Olkoon $P$ ongelma joka on ratkaistavissa Turingin koneella. Ongelma $P$ on ratkaistavissa rekisterikoneella.
 \begin{proof}
-Olkoon $M$ Turingin kone. Lauseen todistamiseksi rakennetaan sellainen rekisterikone $M'$ joka simuloi $M$:n toimintaa.
+Olkoon $M$ Turingin kone joka ratkaisee ongelman . Lauseen todistamiseksi rakennetaan sellainen rekisterikone $M'$ joka simuloi $M$:n toimintaa.
 
-$M$:n suoritusaikainen kokonaistila koostuu nauhan sisällöstä, lukupään sijainnista ja koneen tilasta. Numeroidaan ensin $M$:n nauha-aakkosto numeroilla $0 ... |\Gamma|-1$ siten että tyhjä nauhasymboli $B$ merkitään nollana. Numeroidaan lisäksi tilajoukko $Q$ numeroilla $0 ... |Q| - 1$. Nauhan sisältö ja lukupään sijainti voidaan yhdessä mallintaa kolmella rekisterillä, joista yksi sisältää lukupään vasemmalla puolella olevan puolinauhan kokonaislukuesityksenä, toinen sisältää lukupään kohdalla olevan merkin kokonaislukuesityksen ja kolmas sisältää lukupään oikealla puolella olevan puolinauhan kokonaislukuesityksen. Koneen tila esitetään neljäntenä rekisterinä joka sisältää tilan kokonaislukuesityksen. Lisäksi tarvitaan rajallinen määrä laskureistereitä kerto- ja jakolaskuja varten.
+$M$:n suoritusaikainen kokonaistila koostuu nauhan sisällöstä, lukupään sijainnista ja koneen tilasta. Numeroidaan ensin $M$:n nauha-aakkosto määritelmän \ref{def:fgamma} mukaan, ja tilajoukko $Q$ määritelmän \ref{def:fq} mukaan. Nauhan sisältö ja lukupään sijainti voidaan yhdessä mallintaa kolmella rekisterillä, joista yksi sisältää lukupään vasemmalla puolella olevan puolinauhan kokonaislukuesityksenä, toinen sisältää lukupään kohdalla olevan merkin kokonaislukuesityksen ja kolmas sisältää lukupään oikealla puolella olevan puolinauhan kokonaislukuesityksen. Koneen tila esitetään neljäntenä rekisterinä joka sisältää tilan kokonaislukuesityksen. Lisäksi tarvitaan rajallinen määrä laskurekistereitä kerto- ja jakolaskuja varten.
 
 Koneen aloitustila on
 \begin{center}
 \begin{tabular}{l l}
 Rekisteri & Tila \\
 \hline
-1 & $f(T_{-1, L}) = 0$ \\
+1 & $f_T(T_{-1, L}) = 0$ \\
 2 & $f_{\Gamma}(T(0))$ \\
-3 & $f(T_{1, R})$ \\
+3 & $f_T(T_{1, R})$ \\
 4 & $f_Q(q_0)$ \\
 \end{tabular}
 \end{center}
 Muissa rekistereissä aloitusarvo on 0.
 
-Komentosarjan alussa on sarja $|\Gamma|$ muotoa $\hat{i} (2, i+1, p_i)$ olevia komentoja, jotka valitsevat luettua merkkiä vastaavan komentosarjan. Koska luettuja merkkejä on vain $|\Gamma|$ kappaletta, tiedetään että jokin sarjan komennoista johtaa komentoon $p_i$. Jokainen $p_i$-komento aloittaa vastaavanlaisen $|Q|$ komentoa pitkän sarjan muotoa $\hat{j} (4, j+1, q_{i,k})$  olevia komentoja. Jokainen $q_{i,j}$ komento vastaa siis Turingin koneen merkki-tila-yhdistelmää. Nämä komennot joko lopettavat ohjelman suorituksen tai aloittavat sarjan komentoja jotka asettavat uuden merkin rekisteriin 2 ja uuden tilan rekisteriin 4. Tällä tavoin olemme simuloineet $M$:n tilatransitiofunktion toiminnan.
+Komentosarjan alussa on $|\Gamma|$ kappaletta muotoa $\hat{i} (2, i+1, p_i)$ olevia komentoja, jotka valitsevat luettua merkkiä vastaavan komentosarjan. Koska luettuja merkkejä on vain $|\Gamma|$ kappaletta, tiedetään että jokin sarjan komennoista johtaa komentoon $p_i$. Jokainen $p_i$-komento aloittaa vastaavanlaisen $|Q|$ komentoa pitkän sarjan muotoa $\hat{j} (4, j+1, q_{i,k})$  olevia komentoja. Jokainen $q_{i,j}$ komento vastaa siis Turingin koneen merkki-tila-yhdistelmää. Nämä komennot joko lopettavat ohjelman suorituksen tai aloittavat sarjan komentoja jotka asettavat uuden merkin rekisteriin 2 ja uuden tilan rekisteriin 4. Tällä tavoin olemme simuloineet $M$:n tilatransitiofunktion toiminnan.
 
 Viimeisenä alkuperäinen kone $M$ siirtyisi joko vasemmalle tai oikealle. Nämä operaatiot ovat lähes identtisiä, joten tarkastellaan tässä vain oikealle siirtymistä.
 
@@ -310,9 +329,9 @@ Mikäli $M$:n lukupää on asemassa $n$, $M'$:n kolmessa ensimmäisessä rekiste
 \begin{tabular}{l l}
 Rekisteri & Tila \\
 \hline
-1 & $f(T_{n-1, L})$ \\
-2 & $f_{\Gamma}(T(n))$ \\
-3 & $f(T_{n+1, R})$ \\
+1 & $f_T(T_{n-1, L})$ \\
+2 & $f_\Gamma(T(n))$ \\
+3 & $f_T(T_{n+1, R})$ \\
 \end{tabular}
 \end{center}
 $M$:n siirtyessä oikealle $M'$:n rekisterien tulisi siirtyä tilaan
@@ -320,17 +339,17 @@ $M$:n siirtyessä oikealle $M'$:n rekisterien tulisi siirtyä tilaan
 \begin{tabular}{l l}
 Rekisteri & Tila \\
 \hline
-1 & $f(T_{n, L}) = f(T_{n-1, L}) \times |\Gamma| + f_{\Gamma}(T(n))$ \\
+1 & $f_T(T_{n, L}) = f_T(T_{n-1, L}) \times |\Gamma| + f_{\Gamma}(T(n))$ \\
 2 & $f_{\Gamma}T(n+1)$ \\
-3 & $f(T_{n+2, R}) = \left\lfloor\dfrac{f(T_{n+1, R})}{|\Gamma|}\right\rfloor$ \\
+3 & $f_T(T_{n+2, R}) = \left\lfloor\dfrac{f_T(T_{n+1, R})}{|\Gamma|}\right\rfloor$ \\
 \end{tabular}
 
 \end{center}
 Rekisterien tilan siirtymä voidaan toteuttaa kertomalla 1:n sisältö $|\Gamma|$:lla ja lisäämällä siihen rekisterin 2 sisältö. Tämän jälkeen jaetaan rekisterin 3 sisältö $|\Gamma|$:lla ja asetetaan jakojäännös rekisteriin 2, ja palataan ohjelman alkuun. Tällä tavoin olemme simuloineet $M$:n nauhan siirtämisen.
-\qedhere
 
+Suorituksen päätyttyä $M$:n lopetustila saadaan syöttämällä rekisterin neljä arvo kuvauksen $f_Q$ käänteisfunktioon $f_Q^{-1}(\bar{4})$. Mikäli näin saatu tila sisältyy $M$:n hyväksyvien tilojen joukkoon $F$ $M'$ palauttaa arvon 'kyllä', muulloin 'ei'.
 
-Näiden lisäksi joudumme myös määrittelemään tällaisen koneen aloitustilan. Tämä tapahtuu asettamalla syötenauhaa vastaava luku nauharekisteriin, 1 käsiteltävän merkin numeroksi sekä 0 koneen tilaksi.
+Mikäli konetta $M$ käytetään kyllä/ei-kysymyksen ratkaisun sijaan funktion $f: \mathbb{N}^m \rightarrow \mathbb{N}$ laskemiseen, voidaan simuloitu nauha rekonstruoida $M'$:n nauharekistereistä $f_T^{-1}(\bar{1}) f_\Gamma^{-1}(\bar{2}) f_T^{-1}(\bar{3})$. Funktion $f$ laskun tulos voidaan lukea nauhalta samalla tavalla kuin jos alkuperäistä Turingin konetta $M$ olisi käytetty laskun suorittamiseen.
 
 \qedhere
 \end{proof}
@@ -341,14 +360,14 @@ Olkoon $M$ esimerkin 7 mukainen Turingin kone joka tunnistaa kielen $\{a^nb^n | 
 
 $M$:n nauhamerkistö $\Gamma$ sisältää kolme merkkiä. Numeroidaan ne seuraavasti: $f_\Gamma(B) = 0, f_\Gamma(a) = 1, f_\Gamma(b) = 2$. $M$ sisältää viisi eri tilaa, numeroidaan ne seuraavasti: $f_Q(q_0) = 0, f_Q(q_a) = 1, f_Q(q_b) = 2, f_Q(q_r) = 3, f_Q(q_e) = 4$.
 
-Olkoon koneessa $M'$:ssä 7 rekisteriä:
+Olkoon koneessa $M'$ 6 rekisteriä:
 
 \begin{tabular} [t]{l l}
 $1$ & Vasen puolinauha \\
 $2$ & Lukupään kohdalla oleva merkki \\
 $3$ & Oikea puolinauha \\
 $4$ & Tila \\
-$5 - 7$ & Laskurekistereitä \\
+$5, 6$ & Laskurekistereitä \\
 \end{tabular}
 \\
 
@@ -360,117 +379,109 @@ Seuraava komentolistaus sisältää jonkin verran optimointia toistamisen vältt
 \begin{tabular}[t]{r|r|l}
 & & Selitys\\
 \hline
-$\hat{1}$ & $(2, 2, 4)$  & Luettiin merkki B \\
-$\hat{2}$ & $(2, 3, 9)$  & Luettiin merkki a \\
-$\hat{3}$ & $(2, 4, 14)$  & Luettiin merkki b \\
-$\hat{4}$ & $(4, 5, 19)$  & Luettiin merkki B ja oltiin tilassa $q_0$ \\
-$\hat{5}$ & $(4, 6, 21)$  & Luettiin merkki B ja oltiin tilassa $q_a$ \\
-$\hat{6}$ & $(4, 7, 23)$  & Luettiin merkki B ja oltiin tilassa $q_b$ \\
-$\hat{7}$ & $(4, 8, 51)$  & Luettiin merkki B ja oltiin tilassa $q_r$ \\
-$\hat{8}$ & $(4, 9, 23)$  & Luettiin merkki B ja oltiin tilassa $q_e$ \\
-$\hat{9}$ & $(4, 10, 28)$  & Luettiin merkki a ja oltiin tilassa $q_0$ \\
-$\hat{10}$ & $(4, 11, 29)$  & Luettiin merkki a ja oltiin tilassa $q_a$ \\
-$\hat{11}$ & $(4, 12, 23)$  & Luettiin merkki a ja oltiin tilassa $q_b$ \\
-$\hat{12}$ & $(4, 13, 31)$  & Luettiin merkki a ja oltiin tilassa $q_r$ \\
-$\hat{13}$ & $(4, 14, 23)$  & Luettiin merkki a ja oltiin tilassa $q_e$ \\
-$\hat{14}$ & $(4, 15, 23)$  & Luettiin merkki b ja oltiin tilassa $q_0$ \\
-$\hat{15}$ & $(4, 16, 35)$  & Luettiin merkki b ja oltiin tilassa $q_a$ \\
-$\hat{16}$ & $(4, 17, 38)$  & Luettiin merkki b ja oltiin tilassa $q_b$ \\
-$\hat{17}$ & $(4, 18, 41)$  & Luettiin merkki b ja oltiin tilassa $q_r$ \\
-$\hat{18}$ & $(4, 19, 23)$  & Luettiin merkki b ja oltiin tilassa $q_e$ \\
-$\hat{19}$ & $\hat{M}$  & Palautetaan tosi \\
-$\hat{20}$ & $(4, 51)$  & Siirrytään tilaan $q_a$, kirjoitetaan B ja siirrytään oikealle\\
-$\hat{21}$ & $(4, 21)$  & Siirrytään tilaan $q_b$, kirjoitetaan B ja siirrytään vasemmalle\\
-$\hat{22}$ & $(4, 73)$  &\\
-$\hat{23}$ & $(4, 24)$  & Siirrytään tilaan $q_e$ ja lopetetaan suoritus\\
-$\hat{24}$ & $(4, 25)$  &\\
-$\hat{25}$ & $(4, 26)$  &\\
-$\hat{26}$ & $(4, 27)$  &\\
-$\hat{27}$ & $\hat{M}$  &\\
-$\hat{28}$ & $(4, 51)$  & Siirrytään tilaan $q_a$, kirjoitetaan B ja siirrytään oikealle\\
-$\hat{29}$ & $(4, 30)$  & Siirrytään tilaan $q_a$, kirjoitetaan a ja siirrytään oikealle\\
-$\hat{30}$ & $(2, 51)$  & \\
-$\hat{31}$ & $(4, 32)$  & Siirrytään tilaan $q_r$, kirjoitetaan a ja siirrytään vasemmalle\\
-$\hat{32}$ & $(4, 33)$\\
-$\hat{33}$ & $(4, 34)$\\
-$\hat{34}$ & $(2, 73)$  & \\
+$\hat{1}$ & (2, 2, 4) & Luettiin merkki $B$ \\
+$\hat{2}$ & (2, 3, 9) & Luettiin merkki $a$ \\
+$\hat{3}$ & (2, 4, 14) & Luettiin merkki $b$ \\
+$\hat{4}$ & (4, 5, 81) & Luettiin merkki $B$ ja oltiin tilassa $q_0$ \\
+$\hat{5}$ & (4, 6, 20) & Luettiin merkki $B$ ja oltiin tilassa $q_a$ \\
+$\hat{6}$ & (4, 7, 22) & Luettiin merkki $B$ ja oltiin tilassa $q_b$ \\
+$\hat{7}$ & (4, 8, 49) & Luettiin merkki $B$ ja oltiin tilassa $q_r$ \\
+$\hat{8}$ & (4, 9, 22) & Luettiin merkki $B$ ja oltiin tilassa $q_e$ \\
+$\hat{9}$ & (4, 10, 26) & Luettiin merkki $a$ ja oltiin tilassa $q_0$ \\
+$\hat{10}$ & (4, 11, 27) & Luettiin merkki $a$ ja oltiin tilassa $q_a$ \\
+$\hat{11}$ & (4, 12, 22) & Luettiin merkki $a$ ja oltiin tilassa $q_b$ \\
+$\hat{12}$ & (4, 13, 29) & Luettiin merkki $a$ ja oltiin tilassa $q_r$ \\
+$\hat{13}$ & (4, 14, 22) & Luettiin merkki $a$ ja oltiin tilassa $q_e$ \\
+$\hat{14}$ & (4, 15, 22) & Luettiin merkki $b$ ja oltiin tilassa $q_0$ \\
+$\hat{15}$ & (4, 16, 33) & Luettiin merkki $b$ ja oltiin tilassa $q_a$ \\
+$\hat{16}$ & (4, 17, 36) & Luettiin merkki $b$ ja oltiin tilassa $q_b$ \\
+$\hat{17}$ & (4, 18, 39) & Luettiin merkki $b$ ja oltiin tilassa $q_r$ \\
+$\hat{18}$ & (4, 81, 22) & Luettiin merkki $b$ ja oltiin tilassa $q_e$ \\
+$\hat{19}$ & (4, 49) & Siirrytään tilaan $q_a$, kirjoitetaan $B$ ja siirrytään oikealle \\
+$\hat{20}$ & (4, 21) & Siirrytään tilaan $q_b$, kirjoitetaan $B$ ja siirrytään vasemmalle \\
+$\hat{21}$ & (4, 65) &  \\
+$\hat{22}$ & (4, 23) & Siirrytään tilaan $q_e$ ja lopetetaan suoritus \\
+$\hat{23}$ & (4, 24) &  \\
+$\hat{24}$ & (4, 25) &  \\
+$\hat{25}$ & (4, 81) &  \\
+$\hat{26}$ & (4, 49) & Siirrytään tilaan $q_a$, kirjoitetaan $B$ ja siirrytään oikealle \\
+$\hat{27}$ & (4, 28) & Pysytään tilassa $q_a$, kirjoitetaan $a$ ja siirrytään oikealle \\
+$\hat{28}$ & (2, 49) &  \\
+$\hat{29}$ & (4, 30) & Pysytään tilassa $q_r$, kirjoitetaan $a$ ja siirrytään vasemmalle \\
+$\hat{30}$ & (4, 31) &  \\
+$\hat{31}$ & (4, 32) &  \\
+$\hat{32}$ & (2, 65) &  \\
+$\hat{33}$ & (4, 34) & Pysytään tilassa $q_a$, kirjoitetaan $b$ ja siirrytään oikealle \\
+$\hat{34}$ & (2, 35) &  \\
+$\hat{35}$ & (2, 49) &  \\
+$\hat{36}$ & (4, 37) & Siirrytään tilaan $q_r$, kirjoitetaan $B$ ja siirrytään vasemmalle \\
 \end{tabular}
+\end{center}
+\begin{center}
 \begin{tabular}[t]{r|r|l}
 & & Selitys\\
 \hline
-$\hat{35}$ & $(4, 36)$  & Siirrytään tilaan $q_b$, kirjoitetaan b ja siirrytään oikealle\\
-$\hat{36}$ & $(2, 37)$  & \\
-$\hat{37}$ & $(2, 51)$  & \\
-$\hat{38}$ & $(4, 39)$  & Siirrytään tilaan $q_r$, kirjoitetaan B ja siirrytään vasemmalle\\
-$\hat{39}$ & $(4, 40)$  & \\
-$\hat{40}$ & $(4, 73)$  & \\
-$\hat{41}$ & $(4, 42)$  & Siirrytään tilaan $q_r$, kirjoitetaan b ja siirrytään vasemmalle\\
-$\hat{42}$ & $(4, 43)$\\
-$\hat{43}$ & $(4, 44)$\\
-$\hat{44}$ & $(2, 45)$  & \\
-$\hat{45}$ & $(2, 73)$  & \\
-$\hat{46}$ & $(4, 42)$  & Siirrytään tilaan $q_r$, kirjoitetaan b ja siirrytään vasemmalle\\
-$\hat{47}$ & $(4, 43)$\\
-$\hat{48}$ & $(4, 44)$\\
-$\hat{49}$ & $(2, 45)$  & \\
-$\hat{50}$ & $(2, 73)$  & \\
-$\hat{51}$ & $(5, 52)$  & Siirrytään oikealle\\
-$\hat{52}$ & $(5, 53)$  & Asetetaan luku kolme rekisteriin 5\\
-$\hat{53}$ & $(5, 54)$  &\\
-$\hat{54}$ & $(1, 55, 56)$  & Siirretään rekisterin 1 arvo rekisteriin 6 \\
-$\hat{55}$ & $(6, 54)$  &\\
-$\hat{56}$ & $(5, 57, 62)$  & Suoritetaan osa kertolaskua\\
-$\hat{57}$ & $(6, 58, 60)$  & Kopioidaan rekisterin 6 arvo rekisteriin 1 ja 7\\
-$\hat{58}$ & $(1, 59)$  &\\
-$\hat{59}$ & $(7, 57)$  &\\
-$\hat{60}$ & $(7, 61, 57)$ & Siirrä rekisterin 7 arvo rekisteriin 6 \\
-$\hat{61}$ & $(6, 60)$  &\\
-$\hat{62}$ & $(2, 63, 64)$  & Lisätään rekisterin 2 arvo rekisteriin 1\\
-$\hat{63}$ & $(1, 62)$  &\\
-$\hat{64}$ & $(6, 64, 65)$  & Tyhjennetään rekisteri 6\\
-$\hat{65}$ & $(3, 66, 71)$  & Jaetaan rekisteri 3 kolmella, asetetaan jakojäännös rekisteriin 2\\
-$\hat{66}$ & $(3, 67, 70)$  & \\
-$\hat{67}$ & $(3, 68, 69)$  & \\
-$\hat{68}$ & $(5, 65)$  & \\
+$\hat{37}$ & (4, 38) &  \\
+$\hat{38}$ & (4, 65) &  \\
+$\hat{39}$ & (4, 40) & Pysytään tilassa $q_r$, kirjoitetaan $b$ ja siirrytään vasemmalle \\
+$\hat{40}$ & (4, 41) &  \\
+$\hat{41}$ & (4, 42) &  \\
+$\hat{42}$ & (2, 43) &  \\
+$\hat{43}$ & (2, 65) &  \\
+$\hat{44}$ & (4, 40) & Pysytään tilassa $q_r$, kirjoitetaan $b$ ja siirrytään vasemmalle \\
+$\hat{45}$ & (4, 41) &  \\
+$\hat{46}$ & (4, 42) &  \\
+$\hat{47}$ & (2, 43) &  \\
+$\hat{48}$ & (2, 65) &  \\
+$\hat{49}$ & (1, 50, 51) & Siirrytään oikealle. Siirretään rekisterin 1 arvo rekisteriin 5 \\
+$\hat{50}$ & (5, 49) &  \\
+$\hat{51}$ & (5, 52, 55) & Lisätään rekisterin 5 sisältö kolme kertaa rekisteriin 1 \\
+$\hat{52}$ & (1, 53) &  \\
+$\hat{53}$ & (1, 54) &  \\
+$\hat{54}$ & (1, 51) &  \\
+$\hat{55}$ & (2, 56, 57) & Lisätään rekisterin 2 arvo rekisteriin 1 \\
+$\hat{56}$ & (1, 55) &  \\
+$\hat{57}$ & (3, 58, 63) & Jaetaan rekisteri 3 kolmella, asetetaan jakojäännös rekisteriin 2 \\
+$\hat{58}$ & (3, 59, 62) &  \\
+$\hat{59}$ & (3, 60, 61) &  \\
+$\hat{60}$ & (5, 57) &  \\
+$\hat{61}$ & (2, 62) & Jakojäännös 2 \\
+$\hat{62}$ & (2, 63) & Jakojäännös 1 \\
+$\hat{63}$ & (5, 64, 1) & Siirrä rekisterin 5 sisältö rekisteriin 3, paluu alkuun \\
+$\hat{64}$ & (3, 63) &  \\
+$\hat{65}$ & (3, 66, 67) & Siirrytään vasemmalle. Siirretään rekisterin 3 arvo rekisteriin 5 \\
+$\hat{66}$ & (5, 65) &  \\
+$\hat{67}$ & (5, 68, 71) & Lisätään rekisterin 5 arvo rekisteriin 3 kolme kertaa \\
+$\hat{68}$ & (3, 69) &  \\
+$\hat{69}$ & (3, 70) &  \\
+$\hat{70}$ & (3, 67) &  \\
+$\hat{71}$ & (2, 72, 73) & Lisätään rekisterin 2 arvo rekisteriin 3 \\
+$\hat{72}$ & (3, 71) &  \\
 \end{tabular}
+\end{center}
+\begin{center}
 \begin{tabular}[t]{r|r|l}
 & & Selitys\\
 \hline
-$\hat{69}$ & $(2, 70)$  & Jakojäännös 2 \\
-$\hat{70}$ & $(2, 71)$  & Jakojäännös 1 \\
-$\hat{71}$ & $(5, 72, 1)$  & Siirrä rekisterin 5 sisältö rekisteriin 3, paluu alkuun \\
-$\hat{72}$ & $(3, 71)$  & \\
-$\hat{73}$ & $(5, 74)$  & Siirrytään vasemmalle\\
-$\hat{74}$ & $(5, 75)$  & Asetetaan luku kolme rekisteriin 5\\
-$\hat{75}$ & $(5, 76)$  &\\
-$\hat{76}$ & $(1, 77, 78)$  & Siirretään rekisterin 3 arvo rekisteriin 6 \\
-$\hat{77}$ & $(6, 76)$  &\\
-$\hat{78}$ & $(5, 79, 84)$  & Suoritetaan osa kertolaskua\\
-$\hat{79}$ & $(6, 80, 82)$  & Kopioidaan rekisterin 6 arvo rekisteriin 3 ja 7\\
-$\hat{80}$ & $(1, 81)$  &\\
-$\hat{81}$ & $(7, 79)$  &\\
-$\hat{82}$ & $(7, 83, 79)$ & Siirrä rekisterin 7 arvo rekisteriin 6 \\
-$\hat{83}$ & $(6, 82)$  &\\
-$\hat{84}$ & $(2, 85, 86)$  & Lisätään rekisterin 2 arvo rekisteriin 3\\
-$\hat{85}$ & $(1, 84)$  &\\
-$\hat{86}$ & $(6, 86, 87)$  & Tyhjennetään rekisteri 6\\
-$\hat{87}$ & $(3, 88, 93)$  & Jaetaan rekisteri 1 kolmella, asetetaan jakojäännös rekisteriin 2\\
-$\hat{88}$ & $(3, 89, 92)$  & \\
-$\hat{89}$ & $(3, 90, 91)$  & \\
-$\hat{90}$ & $(5, 87)$  & \\
-$\hat{91}$ & $(2, 92)$  & Jakojäännös 2 \\
-$\hat{92}$ & $(2, 93)$  & Jakojäännös 1 \\
-$\hat{93}$ & $(5, 94, 1)$  & Siirrä rekisterin 5 sisältö rekisteriin 1, paluu alkuun \\
-$\hat{94}$ & $(3, 93)$  & \\
+$\hat{73}$ & (1, 74, 79) & Jaetaan rekisteri 1 kolmella, asetetaan jakojäännös rekisteriin 2 \\
+$\hat{74}$ & (1, 75, 78) &  \\
+$\hat{75}$ & (1, 76, 77) &  \\
+$\hat{76}$ & (5, 73) &  \\
+$\hat{77}$ & (2, 78) & Jakojäännös 2 \\
+$\hat{78}$ & (2, 79) & Jakojäännös 1 \\
+$\hat{79}$ & (5, 80, 1) & Siirrä rekisterin 5 sisältö rekisteriin 1, paluu alkuun \\
+$\hat{80}$ & (1, 79) &  \\
+$\hat{81}$ & halt & \\
 \end{tabular}
 \end{center}
 
 \end{example}
 
 \begin{teor}
-Olkoon $f$ k:n muuttujan funktio joka on ratkaistavissa rekisterikoneella. Funktio $f$ on ratkaistavissa Turingin koneella.
+\label{teor:regtur}
+Olkoon $P$ ongelma joka on ratkaistavissa rekisterikoneella. Ongelma $P$ on ratkaistavissa Turingin koneella.
 \begin{proof}
-Olkoon $M$ rekisterikone. Lauseen todistamiseksi rakennetaan sellainen Turingin kone $M'$, joka pystyy simuloimaan rekisterikoneen $M$ toimintaa. Olkoon rekisterikoneella $R$ rekisteriä. Tällöin tallennetaan yhden rekisterin sisälltö koodattuna joka $R$:nteen muistipaikkaan valitusta rajasta eteenpäin. Esimerkiksi jos $R = 2$, joka toinen nauhan muistipaikka kuuluisi rekisteriin 1 ja joka toinen rekisteriin 2. Rekisterien sisältö voidaan koodata nauhalle monin eri tavoin. Yksinkertaisuuden vuoksi käytetään tässä unaarista lukujärjestelmää.
+Olkoon $M$ rekisterikone joka ratkaisee ongelman $P$. Lauseen todistamiseksi rakennetaan sellainen Turingin kone $M'$, joka pystyy simuloimaan rekisterikoneen $M$ toimintaa. Olkoon rekisterikoneella $R$ rekisteriä. Tällöin tallennetaan yhden rekisterin sisälltö koodattuna joka $R$:nteen muistipaikkaan valitusta rajasta eteenpäin. Esimerkiksi jos $R = 2$, joka toinen nauhan muistipaikka kuuluisi rekisteriin 1 ja joka toinen rekisteriin 2. Rekisterien sisältö voidaan koodata nauhalle monin eri tavoin. Yksinkertaisuuden vuoksi käytetään tässä unaarista lukujärjestelmää.
 
 \begin{figure}[H]
 \begin{center}
@@ -539,9 +550,9 @@ Simulaatio syötteelle $(1, 3)$ on esitetty kuvissa 5-8.
 \end{example}
 
 \begin{teor}
-Olkoon $f$ k:n muuttujan funktio. $f$ on ratkaistavissa rekisterikoneella jos ja vain jos se on ratkaistavissa Turingin koneella.
+Olkoon $P$ ongelma. $P$ on ratkaistavissa rekisterikoneella jos ja vain jos se on ratkaistavissa Turingin koneella.
 \begin{proof}
-Todistus on selvä lauseiden 8 ja 9 nojalla. Lauseiden nojalla havaitaan myös, että mikäli algoritmin suoritus yhdellä koneella ei koskaan pääty, myöskään toisella koneella simuloitu suoritus ei koskaan pääty.
+Todistus on selvä lauseiden \ref{teor:turreg} ja \ref{teor:regtur} nojalla. Lauseiden nojalla havaitaan myös, että mikäli algoritmin suoritus yhdellä koneella ei koskaan pääty, myöskään toisella koneella simuloitu suoritus ei koskaan pääty.
 \end{proof}
 \end{teor}
 

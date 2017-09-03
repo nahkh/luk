@@ -40,10 +40,14 @@ class RegisterMachine:
         instruction = self.getInstruction();
         if instruction == None:
             self.halted = True
+            if self.verbose:
+                print('Execution finished after %d steps' % self.stepCount)
+                self.printState()
             return self.getStateArray()
-            
-        #print '(%d) Executing %s %s %s' % (self.stepCount, self.currentInstruction, instruction['original'], instruction['comment'])
-        #self.printState()
+
+        if self.verbose:
+            print('(%d) Executing %s %s %s' % (self.stepCount, self.currentInstruction, instruction['original'], instruction['comment']))
+            self.printState()
         step = instruction['step']
         register = step[0]
         if len(step) == 2:
@@ -62,7 +66,8 @@ class RegisterMachine:
             return self.instructions[self.currentInstruction]
 
 
-    def execute(self, limit = None):
+    def execute(self, limit = None, verbose = False):
+        self.verbose = verbose
         if limit != None:
             executeTo = self.stepCount + limit
         while (not self.halted) and (limit == None or executeTo > self.stepCount):
@@ -76,7 +81,13 @@ class RegisterMachine:
         return registers
 
     def printState(self):
-        print self.getStateArray()
+        states = self.getStateArray()
+        stringRep = ''
+        for i in range(len(states)):
+            if len(stringRep) > 0:
+                stringRep += ', '
+            stringRep += ('%d: %d' % (i+1, states[i]))
+        print(stringRep)
     
 
 def initialRegisters(encoding, word, alphabetSize, registerCount):
@@ -111,9 +122,9 @@ def acceptResult(decoding, registers, acceptingStates):
     return state in acceptingStates
 
 if __name__=='__main__':
-    M = RegisterMachine('example 14.txt')
-    M.start(*initialRegisters({'a': 1, 'b': 2}, 'aaaabbbb', 3, 5))
-    finalState = M.execute()
+    M = RegisterMachine('minified.txt')
+    M.start(*initialRegisters({'a': 1, 'b': 2}, 'aabb', 3, 5))
+    finalState = M.execute(verbose = True)
 
     print tapeState({0: ' ', 1:'a', 2:'b'}, finalState, 3)
     print acceptResult({0: 'q_0', 4: 'q_e'}, finalState, ['q_0'])
