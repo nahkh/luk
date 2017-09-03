@@ -1,0 +1,17 @@
+q_0
+q_0
+q_0,a,q_a,B,R
+q_0,b,q_e,B,R
+q_0,B,halt
+q_a,a,q_a,a,R
+q_a,b,q_a,b,R
+q_a,B,q_b,B,L
+q_b,a,q_e,a,R
+q_b,b,q_r,B,L
+q_b,B,q_e,B,R
+q_r,a,q_r,a,L
+q_r,b,q_r,b,L
+q_r,B,q_0,B,R
+q_e,a,halt
+q_e,b,halt
+q_e,B,halt
